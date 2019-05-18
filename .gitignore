@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/ChamaGas/.vs/ChamaGas/v15
+/ChamaGas/ChamaGas/ChamaGas/obj
+/ChamaGas/ChamaGas/ChamaGas.Android/obj
+/ChamaGas/ChamaGas/ChamaGas.iOS/obj
+/ChamaGas/ChamaGas/ChamaGas.UWP/obj
+/ChamaGas/ChamaGas/ChamaGas/bin/Debug/netstandard2.0
+/ChamaGas/ChamaGas/ChamaGas.Android/bin/Debug
+/ChamaGas/ChamaGas/ChamaGas.UWP/bin/x86/Debug
