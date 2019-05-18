@@ -12,6 +12,11 @@ namespace ChamaGas
         public MainPage()
         {
             InitializeComponent();
+            MeuMetodo()
+        }
+
+        public void MeuMetodo()
+        {
         }
     }
 }
