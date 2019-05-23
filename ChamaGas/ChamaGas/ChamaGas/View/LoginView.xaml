@@ -4,9 +4,23 @@
              x:Class="ChamaGas.View.LoginView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome LOGIN!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label x:Name="lblEmail" 
+                   Text="Email"/>
+            <Entry x:Name="entEmail"
+                   Placeholder="Digite email login"
+                   Text="{Binding Email}"/>
+            <Label x:Name="lblSenha" 
+                   Text="Senha"/>
+            <Entry x:Name="entEmail"
+                   Placeholder="Senha"
+                   IsPassword="True"
+                   Text="{Binding Senha}"/>
+            <Button x:Name="btnEntrar" 
+                    Text="Entrar"
+                    TextColor="White"  
+                    Padding="8"
+                    WidthRequest="160"
+                    Clicked="BtnEntrar_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
