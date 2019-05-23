@@ -4,6 +4,13 @@
              x:Class="ChamaGas.View.MenuView">
     <ContentPage.Content>
         <StackLayout>
+            <StackLayout Orientation="Horizontal"
+                     VerticalOptions="EndAndExpand"
+                     HorizontalOptions="CenterAndExpand"
+                     Spacing="30">
+                <Image Source="bottle64.png"></Image>
+                
+            </StackLayout>
             <ListView x:Name="lvMenu"
                       ItemSelected="LvMenu_ItemSelected">
                 <ListView.ItemTemplate>
