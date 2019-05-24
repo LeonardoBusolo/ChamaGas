@@ -11,7 +11,7 @@
                    Text="{Binding Email}"/>
             <Label x:Name="lblSenha" 
                    Text="Senha"/>
-            <Entry x:Name="entEmail"
+            <Entry x:Name="entSenha"
                    Placeholder="Senha"
                    IsPassword="True"
                    Text="{Binding Senha}"/>

@@ -13,7 +13,7 @@ namespace ChamaGas.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LoginView : ContentPage
 	{
-        Usuario usuario { get; set; };
+        Usuario usuario { get; set; }
 		public LoginView ()
 		{
 			InitializeComponent ();
