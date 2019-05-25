@@ -7,6 +7,20 @@
             <Label Text="Welcome PESSOA!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <TableView>
+                <TableRoot Title="Pessoa">
+                    <TableSection>
+                        <ViewCell>
+                            <Entry x:Name="etCep" Placeholder="cep" Unfocused="EtCep_Unfocused"/>
+                        </ViewCell>
+                        <EntryCell x:Name="etLogradouro" Placeholder="logradouro"/>
+                        <EntryCell x:Name="etComplemento" Placeholder="complemento"/>
+                        <EntryCell x:Name="etBairro" Placeholder="bairro"/>
+                        <EntryCell x:Name="etLocalidade" Placeholder="localizacao"/>
+                        <EntryCell x:Name="etUf" Placeholder="uf"/>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
