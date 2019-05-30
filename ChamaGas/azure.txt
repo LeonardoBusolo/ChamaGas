@@ -1,0 +1,60 @@
+Criar Banco (BANCO DE DADOS SQL)
+chamagas38.database.windows.net
+leobusolo
+Caio231104
+
+Nome Banco
+Chamagas38Bd
+
+
+Criar Back-end (Recursos -> Celular)
+Aplicativo Móvel
+chamagas38.azurewebsites.net
+
+
+Acessar 
+Banco de dados SQL
+	chamagas38 ()
+		Nome do Servidor
+		chamagas38.database.windows.net
+		Cadeias de conexão
+		Server=tcp:chamagas38.database.windows.net,1433;Initial Catalog=Chamagas38Bd;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+
+Todos Recursos
+	chamagas38 (Serviço de Aplicativo)
+	Movel
+		Tabelas Faceis
+		Data Source=tcp:{your_SQLServer},{port};Initial Catalog={your_catalogue};User ID={your_username};Password={your_password}
+		Azure SQL database: MS_TableConnectionString
+
+
+	DATA SOURCE + CADEIAS E CONEXAO (STRING DE CONEXAO)
+		Data Source=tcp:chamagas38.database.windows.net,1433;Initial Catalog=Chamagas38Bd;User ID=leobusolo;Password=Caio231104
+		Azure SQL database: MS_TableConnectionString
+
+Todos Recursos
+	chamagas38 (Serviço de Aplicativo)
+		Configuração
+			New conection string
+				Name
+				MS_TableConnectionString
+				Value
+				Data Source=tcp:chamagas38.database.windows.net,1433;Initial Catalog=Chamagas38Bd;User ID=leobusolo;Password=Caio231104;
+				Type
+				SQLAzure
+				
+				[Update] -> "SALVAR"	
+
+Todos Recursos
+	chamagas38 (Serviço de Aplicativo)
+	Movel
+		Tabelas Faceis
+			Passo2 
+
+
+Todos Recursos
+	chamagas38 (Serviço de Aplicativo)
+	Inicio Rapido
+
+Instalar NuGet 
+	Microsoft.Azure.Mobile.Client

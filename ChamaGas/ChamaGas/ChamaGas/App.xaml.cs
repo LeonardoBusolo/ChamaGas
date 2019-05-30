@@ -8,7 +8,7 @@ namespace ChamaGas
 {
     public partial class App : Application
     {
-
+        public static string uriAzure = "https://chamagas38.azurewebsites.net";
 
         public App()
         {
