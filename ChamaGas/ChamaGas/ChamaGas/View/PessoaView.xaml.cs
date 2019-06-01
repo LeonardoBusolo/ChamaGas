@@ -16,7 +16,11 @@ namespace ChamaGas.View
 	{
         Base_Services clientCep = new Base_Services(Base_Services.URL_VIACEP);
 
-        ReqRes_Services clientReqRes = new ReqRes_Services("api/users");
+        ReqRes_Services clientReqRes_user = new ReqRes_Services("users");
+        ReqRes_Services clientReqRes_register = new ReqRes_Services("register");
+
+        User_ReqRes md = new User_ReqRes();
+
 
 
         //Base_Services clientApi = new Base_Services(Base_Services.URL_API);
@@ -36,9 +40,28 @@ namespace ChamaGas.View
             this.etLocalidade.Text = cep_ret.localidade;
             this.etUf.Text = cep_ret.uf;
 
-            var obj_reqres = await clientReqRes.Get<RetornoTeste>("2");
-            await DisplayAlert("Informações", $"Id:{obj_reqres.data.FirstOrDefault().id.ToString()}, " +
-                $" Email:{obj_reqres.data.FirstOrDefault().email.ToString()}", "Fechar");
+            var obj_reqres = await clientReqRes_user.Get<RetornoTeste>("2");
+
+            md.name = cep_ret.bairro;
+            md.job = cep_ret.localidade;
+
+            var retornoPost = await clientReqRes_user.Post(md);
+            await this.DisplayAlert("meu retorno Post", $"Id:{retornoPost.id} Nome:{retornoPost.name} Job:{retornoPost.job} created{retornoPost.createdAt}", "Entendi");
+
+            var retornoPut = await clientReqRes_user.Put(md, "2");
+            await this.DisplayAlert("meu retorno Put", $"Id:{retornoPut.id} Nome:{retornoPut.name} Job:{retornoPut.job} Update{retornoPut.updatedAt}", "Entendi");
+
+            await DisplayAlert("Informações", $"Id:{obj_reqres.data.FirstOrDefault().id.ToString()} Email:{obj_reqres.data.FirstOrDefault().email.ToString()}", "Fechar");
+
+            var usuarioEntrada = new Usuario
+            {
+                Email= "eve.holt@reqres.in",
+                Password= "pistol"
+            };
+
+            var usuarioSaida = await clientReqRes_register.Post<Usuario, Usuario>(usuarioEntrada);
+
+            await this.DisplayAlert("Retorno login", $"{usuarioSaida.Token}", "Logado");
         }
     }
 }

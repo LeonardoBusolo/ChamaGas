@@ -9,7 +9,7 @@ Chamagas38Bd
 
 Criar Back-end (Recursos -> Celular)
 Aplicativo Móvel
-chamagas38.azurewebsites.net
+https://chamagas38.azurewebsites.net
 
 
 Acessar 
