@@ -1,4 +1,5 @@
 ﻿using ChamaGas.Interface;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -38,5 +39,8 @@ namespace ChamaGas.Model
         public double Longitude { get; set; }
 
         public bool Deleted { get; set; }
+
+        [JsonIgnore]  // ignora campo quando converte para para texto no formato json
+        public double Distancia { get; set; }
     }
 }

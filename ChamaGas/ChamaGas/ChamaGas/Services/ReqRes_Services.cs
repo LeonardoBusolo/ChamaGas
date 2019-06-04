@@ -39,11 +39,22 @@ namespace ChamaGas.Services
 
 
             var retorno = await client.PostAsync(this.api_name, corpo);
-            var retornoTexto = await retorno.Content.ReadAsStringAsync();
 
-            To obj_Convertido = JsonConvert.DeserializeObject<To>(retornoTexto);
-            //return retornoTexto;
-            return obj_Convertido;
+            if (retorno.IsSuccessStatusCode)
+            {
+                var retornoTexto = await retorno.Content.ReadAsStringAsync();
+
+                To obj_Convertido = JsonConvert.DeserializeObject<To>(retornoTexto);
+                //return retornoTexto;
+                return obj_Convertido;
+            }
+            else
+            {
+                throw new Exception($"Ocorreu um erro: {retorno.StatusCode.ToString()}");
+            }
+            
+
+            
         }
 
         private StringContent GetBody<T>(T md)

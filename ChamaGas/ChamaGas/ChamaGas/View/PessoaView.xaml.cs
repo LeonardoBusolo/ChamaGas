@@ -56,12 +56,24 @@ namespace ChamaGas.View
             var usuarioEntrada = new Usuario
             {
                 Email= "eve.holt@reqres.in",
-                Password= "pistol"
+                Password= "pistola"
             };
 
-            var usuarioSaida = await clientReqRes_register.Post<Usuario, Usuario>(usuarioEntrada);
+            try
+            {
 
-            await this.DisplayAlert("Retorno login", $"{usuarioSaida.Token}", "Logado");
+
+                var usuarioSaida = await clientReqRes_register.Post<Usuario, Usuario>(usuarioEntrada);
+                await this.DisplayAlert("Retorno login", $"{usuarioSaida.Token}", "Logado");
+
+            }
+            catch (Exception ex)
+            {
+
+                await this.DisplayAlert("Erro", ex.Message, "OK");
+            }
+
+            
         }
     }
 }
