@@ -45,6 +45,13 @@ namespace ChamaGas.View
                 PaginaView = typeof(PessoaView)
             });
 
+            paginas.Add(new Pagina
+            {
+                Titulo = "Mapa",
+                Icone = "",
+                PaginaView = typeof(EssentialsMapaView)
+            });
+
             lvMenu.ItemsSource = paginas;
         }
 

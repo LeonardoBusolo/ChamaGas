@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChamaGas.View.EssentialsMapaView">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Options:"/>
+            <Label Text="Name"/>
+            <Entry x:Name="etName"/>
+
+            <Label Text="Latitude" Margin="0,24,0,0" />
+            <Entry Keyboard="Numeric" Text="-20.8141467"
+                   x:Name="etLatitude" />
+
+            <Label Text="Longitude" />
+            <Entry Keyboard="Numeric" Text="-49.3758587"
+                   x:Name="etLongitude" />
+
+            <Button Text="Cordenadas" x:Name="btnCordenadas"
+                    Clicked="BtnCordenadas_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
