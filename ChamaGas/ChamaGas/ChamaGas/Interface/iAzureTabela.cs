@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ChamaGas.Interface
 {
-    interface iAzureTabela
+    public interface iAzureTabela
     {
          string Id { get; set; }
     }
