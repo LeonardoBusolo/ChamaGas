@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChamaGas.View.CameraView"
+             BackgroundColor="Azure">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Aqua">
+            <!--<Button x:Name="btnTiraFoto" Text="Foto" Clicked="BtnTiraFoto_Clicked"/-->
+            <Button x:Name="btnTiraFoto" Text="Foto" Command="{Binding TirarFotoCommand}"/>
+            <ScrollView BackgroundColor="Fuchsia">
+                <StackLayout>
+                    <Label Text="Imagem Banco" />
+                    <Image x:Name="imgBanco"
+                           Source="{Binding ImgSBanco}"/>
+                    <Label Text="Imagem Galeria" />
+                    <Image x:Name="imgGaleria" 
+                           Source="{Binding ImgSGaleria}"/>
+                    <Label Text="Imagem Pasta Interna" />
+                    <Image x:Name="imgInterna" 
+                           Source="{Binding ImgSInterna}"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,5 @@
-﻿using ChamaGas.View;
+﻿using ChamaGas.Helpers;
+using ChamaGas.View;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,6 +18,8 @@ namespace ChamaGas
             //MainPage = new NavigationPage(new MasterView());
 
             //Habilita pagina principal
+            Conexao.Initialize();
+
             MainPage = new MasterView();
         }
 
