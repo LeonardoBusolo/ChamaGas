@@ -17,7 +17,7 @@ namespace ChamaGas.View
 	{
         //Serviços do Azure
         PessoaAzureService pessoaAzureServico;
-        Pessoa_MD obj_pessoaMD;
+        Pessoa obj_pessoaMD;
 
 
         Base_Services clientCep = new Base_Services(Base_Services.URL_VIACEP);
@@ -36,7 +36,7 @@ namespace ChamaGas.View
             //Instanciando serviço
             pessoaAzureServico = new PessoaAzureService();
 
-            obj_pessoaMD = new Pessoa_MD();
+            obj_pessoaMD = new Pessoa();
 
             ListarTipo();
         }
@@ -104,7 +104,7 @@ namespace ChamaGas.View
 
         private async Task<bool> SalvarAsync()
         {
-            obj_pessoaMD = new Pessoa_MD();
+            obj_pessoaMD = new Pessoa();
             obj_pessoaMD.Id = "";
             obj_pessoaMD.RazaoSocial = etRazaoSocial.Text;
             obj_pessoaMD.Tipo = picTipo.SelectedItem.ToString();

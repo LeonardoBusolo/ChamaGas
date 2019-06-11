@@ -28,7 +28,7 @@ namespace ChamaGas.View
             //1.0.1
             var mPosition = new Location(-20.8141467, -49.3758587);
 
-            List<Pessoa_MD> fornecedores = (List<Pessoa_MD>)
+            List<Pessoa> fornecedores = (List<Pessoa>)
                 await pessoa_service.List(etBusca.Text);
 
             foreach (var forn in fornecedores)

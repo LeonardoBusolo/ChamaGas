@@ -14,10 +14,12 @@
                         <ViewCell>
                             <StackLayout>
                                 <Image x:Name="imgFoto" />
-                                <Entry x:Name="etRazaoSocial" Placeholder="Razão Social" />
-                                <Picker x:Name="picTipo" />
-                            </StackLayout>
-                        </ViewCell>
+                                    <Picker x:Name="picTipo" />
+                                </StackLayout>
+                            </ViewCell>
+                            
+                                <EntryCell x:Name="etRazaoSocial" Placeholder="Razão Social" />
+
                     </TableSection>
                     <TableSection Title="Endereço">
                         <ViewCell>
@@ -34,13 +36,11 @@
 
                     </TableSection>
                     <TableSection Title="Usuario">
-                        <ViewCell>
-                            <StackLayout>
-                                <Entry x:Name="etTelefone" Placeholder="Telefone" />
-                                <Entry x:Name="etEmail" Placeholder="Email" IsPassword="True" />
-                                <Entry x:Name="etSenha" Placeholder="Senha" />
-                            </StackLayout>
-                        </ViewCell>
+                      
+                                <EntryCell x:Name="etTelefone" Placeholder="Telefone" />
+                                <EntryCell x:Name="etEmail" Placeholder="Email"  />
+                                <EntryCell x:Name="etSenha" Placeholder="Senha" />
+
                     </TableSection>
                 </TableRoot>
             </TableView>

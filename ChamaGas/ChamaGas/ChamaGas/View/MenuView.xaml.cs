@@ -59,6 +59,13 @@ namespace ChamaGas.View
                 PaginaView = typeof(CameraView)
             });
 
+            paginas.Add(new Pagina
+            {
+                Titulo = "Lista Usuarios",
+                Icone = "",
+                PaginaView = typeof(UsuarioView)
+            });
+
             lvMenu.ItemsSource = paginas;
         }
 

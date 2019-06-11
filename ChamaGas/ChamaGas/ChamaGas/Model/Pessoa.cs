@@ -6,7 +6,8 @@ using System.Text;
 
 namespace ChamaGas.Model
 {
-    public class Pessoa_MD : iAzureTabela
+    //[Newtonsoft.Json.JsonObject("Pessoa")]
+    public class Pessoa : iAzureTabela
     {
         public string Id { get; set; }
 

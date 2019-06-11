@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChamaGas.View.UsuarioView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnAdicionar"
+                     Text="Adicionar" 
+                     Icon="meuicone.png" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ActivityIndicator x:Name="aiCarregando" 
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"
+                               IsVisible="False"
+                               IsEnabled="True"
+                               IsRunning="{Binding Source={x:Reference lvUsuarios},Path=IsRefreshing}"/>
+            <SearchBar x:Name="sbBusca" 
+                       SearchButtonPressed="SbBusca_SearchButtonPressed"/>
+            <ListView x:Name="lvUsuarios"
+                      HasUnevenRows="True"
+                      Refreshing="LvUsuarios_Refreshing">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem x:Name="btnRemover"
+                                          Text="Remover"
+                                          Icon=""/>
+                            </ViewCell.ContextActions>
+                            <StackLayout>
+                                <Label  Text="{Binding RazaoSocial}"/>
+                                <Label  Text="{Binding Tipo}"/>
+                                <Label  Text="{Binding Email}"/>
+                                <Label  Text="{Binding Telefone}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
