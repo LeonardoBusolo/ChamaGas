@@ -29,7 +29,6 @@
                                    Text="{Binding Endereco}"/>
                         <EntryCell x:Name="etNumero" 
                                    Placeholder="Numero" 
-                                   Keyboard="Numeric" 
                                    Text="{Binding Numero}"/>
                         <!--<EntryCell x:Name="etComplemento" 
                                    Placeholder="complemento"/>-->
