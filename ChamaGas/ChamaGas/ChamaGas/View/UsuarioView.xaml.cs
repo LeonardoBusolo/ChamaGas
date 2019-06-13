@@ -15,42 +15,50 @@ namespace ChamaGas.View
     public partial class UsuarioView : ContentPage
     {
         PessoaAzureService pessoaAzureServico;
+        IEnumerable<Pessoa> usuarios;
         public UsuarioView()
         {
             InitializeComponent();
             pessoaAzureServico = new PessoaAzureService();
+            ListarUsuariosAsync(sbBusca.Text);
         }
 
         //void aguarda resultado
-        private async void ListarUsuariosAsync(string busca)
+        private async void ListarUsuariosAsync(string busca=null)
         {
-            aiCarregando.IsVisible = true;
+            
             lvUsuarios.IsRefreshing = true;
             try
             {
 
 
                 //Fez a consulta no banco de dados Azure
-                var usuarios = await pessoaAzureServico.ListarRegistroAsync();
+                usuarios = await pessoaAzureServico.ListarRegistroAsync();
 
                 //Verifica se existe um termo para a busca
                 if (!string.IsNullOrWhiteSpace(busca))
                 {
-                    usuarios.Where(p =>
-                            p.RazaoSocial.StartsWith(busca) ||
-                            p.Endereco.Contains(busca) ||
-                            p.Cep == busca).OrderBy(p => p.RazaoSocial);
+                    lvUsuarios.ItemsSource = usuarios.Where(p =>
+                            p.RazaoSocial.StartsWith(busca) )
+                            .OrderBy(p => p.RazaoSocial)
+                            .ToList();
+
                 }
+                else {
 
 
-                lvUsuarios.ItemsSource = usuarios;
+                lvUsuarios.ItemsSource = usuarios
+                    .OrderBy(p => p.RazaoSocial)
+                            .ToList();
+            }
+
             }catch
             {
                 await DisplayAlert("Atenção", "Não foi possivel realizar a consulta", "Fechar");
             }
 
             lvUsuarios.IsRefreshing = false;
-            aiCarregando.IsVisible = false;
+           
         }
 
         protected override void OnAppearing()
@@ -67,6 +75,45 @@ namespace ChamaGas.View
         private void LvUsuarios_Refreshing(object sender, EventArgs e)
         {
             ListarUsuariosAsync(sbBusca.Text);
+        }
+
+        private async void BtnRemover_Clicked(object sender, EventArgs e)
+        {
+            //Pega o valor do Command do menu da lista CommandParameter
+            string id = ((MenuItem)sender).CommandParameter.ToString();
+
+            //Pega o item(objeto) da lista selecionado
+            Pessoa usuario = usuarios.FirstOrDefault(p => p.Id == id);
+            if (usuario != null)
+            {
+                bool retorno = await pessoaAzureServico.ExcluirRegistroAsync(usuario);
+                if (retorno)
+                {
+                    await DisplayAlert("Sucesso", "Registro excluido com sucesso", "Fechar");
+                    ListarUsuariosAsync();
+                    return;
+                }
+            }
+            
+            else
+            {
+                await DisplayAlert("Atenção", "Não foi possível a exclusão do registro", "Fechar"); 
+            }
+            
+        }
+
+        private void BtnAdicionar_Clicked(object sender, EventArgs e)
+        {
+            MasterView.NavegacaoMasterDetail.Detail.Navigation.PushAsync(new PessoaView());
+        }
+
+        private void LvUsuarios_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            //Pega o item selecionado "e" na lista
+            Pessoa usuario = e.SelectedItem as Pessoa;
+
+            //vai para PessoaView enviando dados do usuario selecionado
+            MasterView.NavegacaoMasterDetail.Detail.Navigation.PushAsync(new PessoaView(usuario));
         }
     }
 }
