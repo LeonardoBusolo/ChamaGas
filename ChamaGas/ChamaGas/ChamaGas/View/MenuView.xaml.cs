@@ -79,10 +79,22 @@ namespace ChamaGas.View
                 //Iniciar Navegação
                 MasterView.NavegacaoMasterDetail.IsPresented = false;
                 MasterView.NavegacaoMasterDetail.Detail.Navigation.PopToRootAsync();
+
                 //Cria a pagina view
-                Page paginaview = Activator.CreateInstance(pagina.PaginaView) as Page;
+                Page paginaView = null;
+                if (pagina.PaginaView == typeof(PessoaView))
+                {
+                    paginaView = new PessoaView(new Pessoa()); 
+                }
+                else
+                {
+                    paginaView = Activator.CreateInstance(pagina.PaginaView) as Page;
+                }
+                    
+
+
                 //Navega para a pagina 
-                MasterView.NavegacaoMasterDetail.Detail.Navigation.PushAsync(paginaview);
+                MasterView.NavegacaoMasterDetail.Detail.Navigation.PushAsync(paginaView);
                 //Desativa o item selecionado
                 lvMenu.SelectedItem = null;
             }

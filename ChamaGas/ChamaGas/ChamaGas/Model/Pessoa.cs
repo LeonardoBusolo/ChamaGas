@@ -1,13 +1,16 @@
-﻿using ChamaGas.Interface;
+﻿using ChamaGas.Helpers;
+using ChamaGas.Interface;
+using ChamaGas.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace ChamaGas.Model
 {
     //[Newtonsoft.Json.JsonObject("Pessoa")]
-    public class Pessoa : iAzureTabela
+    public class Pessoa : ViewModelBase, iAzureTabela
     {
         public string Id { get; set; }
 
@@ -33,7 +36,12 @@ namespace ChamaGas.Model
 
         public string Telefone { get; set; }
 
-        public string Foto { get; set; }
+
+        private string foto;
+        public string Foto {
+            get { return foto; }
+            set { SetProperty(ref foto, value); }
+        }
 
         public double Latitude { get; set; }
 
@@ -43,5 +51,48 @@ namespace ChamaGas.Model
 
         [JsonIgnore]  // ignora campo quando converte para para texto no formato json
         public double Distancia { get; set; }
+
+        
+        private bool botaoVisivel;
+
+        [JsonIgnore]
+        public bool BotaoVisivel
+        {
+            get { return botaoVisivel; }
+            set { SetProperty(ref botaoVisivel, value); }
+        }
+
+        
+        private bool imageVisivel;
+
+        [JsonIgnore]
+        public bool ImageVisivel
+        {
+            get { return imageVisivel; }
+            set { SetProperty(ref imageVisivel, value); }
+        }
+
+
+
+        [JsonIgnore]
+        public Command TirarFotoCommand { get; set; }
+
+        public Pessoa()
+        {
+            TirarFotoCommand = new Command(TiraFoto);
+            BotaoVisivel = true;
+            ImageVisivel = false;
+        }
+
+        public async void TiraFoto()
+        {
+            Foto_MD md = await Photo.TiraFoto();
+            this.Foto = md.pathGaleria;
+
+            BotaoVisivel = false;
+            ImageVisivel = true;
+        }
+
+        
     }
 }

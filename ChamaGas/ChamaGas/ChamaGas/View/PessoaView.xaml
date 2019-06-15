@@ -5,14 +5,23 @@
     <ContentPage.Content>
 
         <StackLayout>
-            <TableView>
+            <TableView HasUnevenRows="True">
                 <TableRoot Title="Pessoa">
                     <TableSection Title="Informações Pessoais">
                         <TextCell x:Name="lblId" 
                                   Text="{Binding Id}" />
-                        <ImageCell x:Name="imgFoto" 
-                                   ImageSource="{Binding Foto}"/>
-                            <EntryCell x:Name="etRazaoSocial" 
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="Foto:"/>
+                                <Button IsVisible="{Binding BotaoVisivel}" Text="Tirar Foto"  Command="{Binding TirarFotoCommand}"/>
+                                <Image HeightRequest="120" IsVisible="{Binding  ImageVisivel}" x:Name="imgFoto" Source="{Binding Foto}"
+                                         Aspect="Fill" />
+                            </StackLayout>
+                            
+                            
+                    
+                        </ViewCell>
+                        <EntryCell x:Name="etRazaoSocial" 
                                        Placeholder="Nome ou Razão Social"  
                                        Text="{Binding RazaoSocial}"/>
                         </TableSection>

@@ -26,7 +26,10 @@ namespace ChamaGas.View
             //NutGet - Solution
             //xamarin.essentials
             //1.0.1
-            var mPosition = new Location(-20.8141467, -49.3758587);
+            //var mPosition = new Location(-20.8141467, -49.3758587);
+
+            var request = new GeolocationRequest(GeolocationAccuracy.Best);
+            var mPosition = await Geolocation.GetLocationAsync(request);
 
             List<Pessoa> fornecedores = (List<Pessoa>)
                 await pessoa_service.List(etBusca.Text);
@@ -41,6 +44,19 @@ namespace ChamaGas.View
             lvForns.ItemsSource = fornOrdenado;
 
             base.OnAppearing();
+        }
+
+        private async void LvForns_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Pessoa pessoaSelecionada = (Pessoa)e.Item;
+
+            await Map.OpenAsync(pessoaSelecionada.Latitude, pessoaSelecionada.Longitude,
+                new MapLaunchOptions
+                {
+                    Name = "Localização destino",
+                    NavigationMode = NavigationMode.Driving,
+                });
+           
         }
     }
 }

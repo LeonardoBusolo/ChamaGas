@@ -39,7 +39,7 @@ namespace ChamaGas.Services.Azure
             listaRetorno.Add(new Pessoa
             {
                 RazaoSocial = "Habib's",
-                Longitude = - -49.381770,
+                Longitude = -49.381770,
                 Latitude = -20.817285,
                 
             });

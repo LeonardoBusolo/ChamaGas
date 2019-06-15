@@ -19,7 +19,6 @@ namespace ChamaGas.View
 
         //public async Task NavegateToBuilding25()
         //{
-        //    var mPosition = new Location(-20.8141467, -49.3758587);
 
 
         //    var location = new Location(47.645160, -122.1306032);
