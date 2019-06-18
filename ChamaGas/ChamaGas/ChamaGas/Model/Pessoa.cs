@@ -77,11 +77,17 @@ namespace ChamaGas.Model
         [JsonIgnore]
         public Command TirarFotoCommand { get; set; }
 
+        [JsonIgnore]
+        public string TextoBotaoFoto { get; set; }
+
+
         public Pessoa()
         {
             TirarFotoCommand = new Command(TiraFoto);
             BotaoVisivel = true;
             ImageVisivel = false;
+
+            TextoBotaoFoto = Font_Index.camera;
         }
 
         public async void TiraFoto()

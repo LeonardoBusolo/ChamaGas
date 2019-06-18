@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:ChamaGas.Components"
              x:Class="ChamaGas.View.PessoaView">
     <ContentPage.Content>
 
@@ -13,7 +14,9 @@
                         <ViewCell>
                             <StackLayout>
                                 <Label Text="Foto:"/>
-                                <Button IsVisible="{Binding BotaoVisivel}" Text="Tirar Foto"  Command="{Binding TirarFotoCommand}"/>
+                                <components:Btn_Icon IsVisible="{Binding BotaoVisivel}" BackgroundColor="Transparent"
+                                                     Text="{Binding TextoBotaoFoto}" FontSize="30"  TextColor="Gray"
+                                                     Command="{Binding TirarFotoCommand}"/>
                                 <Image HeightRequest="120" IsVisible="{Binding  ImageVisivel}" x:Name="imgFoto" Source="{Binding Foto}"
                                          Aspect="Fill" />
                             </StackLayout>

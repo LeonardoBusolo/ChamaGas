@@ -9,6 +9,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Linq;
+using ChamaGas.Helpers;
 
 namespace ChamaGas.View
 {
@@ -19,6 +20,7 @@ namespace ChamaGas.View
 		public HomeView ()
 		{
 			InitializeComponent ();
+            meuIcone.Text = Font_Index.home;
 		}
 
         protected async override void OnAppearing()
@@ -57,6 +59,16 @@ namespace ChamaGas.View
                     NavigationMode = NavigationMode.Driving,
                 });
            
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Icon_Tapped(object sender, EventArgs e)
+        {
+            this.DisplayAlert("Aviso", "Era uma label, mas pode ser clicado também.", "OK");
         }
     }
 }
