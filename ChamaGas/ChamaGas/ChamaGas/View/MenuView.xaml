@@ -1,17 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:c="clr-namespace:ChamaGas.Components" 
+             xmlns:c="clr-namespace:ChamaGas.Components"
              x:Class="ChamaGas.View.MenuView">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Orientation="Horizontal"
-                     VerticalOptions="EndAndExpand"
-                     HorizontalOptions="CenterAndExpand"
-                     Spacing="30">
-                <Image Source="bottle64.png"></Image>
-                
-            </StackLayout>
+            <Frame     BackgroundColor="OrangeRed"
+                       CornerRadius="30"
+                       HeightRequest="72"
+                       WidthRequest="72"
+                       HasShadow="True"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Opacity="0.65"
+                       Margin="10"
+                       >
+                <StackLayout VerticalOptions="Center"
+                             HorizontalOptions="Center">
+                    <!--<Image Source="bottle64.png"></Image>-->
+                    <c:Icon x:Name="meuIcone" 
+                        FontSize="32" 
+                        TextColor="White" 
+                        />
+                </StackLayout>
+            </Frame>
             <ListView x:Name="lvMenu"
                       ItemTapped="LvMenu_ItemTapped">
                 <ListView.ItemTemplate>

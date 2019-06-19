@@ -20,7 +20,8 @@ namespace ChamaGas.View
 		{
 			InitializeComponent ();
             IniciarLista();
-		}
+            meuIcone.Text = Font_Index.fire;
+        }
 
         public void IniciarLista()
         {
@@ -83,7 +84,7 @@ namespace ChamaGas.View
             //Verificar se existe a pagina
             if (pagina != null)
             {
-                pagina.CorLetra = Color.Black;
+                pagina.CorLetra = Color.OrangeRed;
 
                 //Iniciar Navegação
                 MasterView.NavegacaoMasterDetail.IsPresented = false;

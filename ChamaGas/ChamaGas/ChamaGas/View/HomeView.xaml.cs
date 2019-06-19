@@ -20,7 +20,8 @@ namespace ChamaGas.View
 		public HomeView ()
 		{
 			InitializeComponent ();
-            meuIcone.Text = Font_Index.home;
+            //meuIcone.Text = Font_Index.fire;
+           
 		}
 
         protected async override void OnAppearing()

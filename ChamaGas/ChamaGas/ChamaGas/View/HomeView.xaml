@@ -8,11 +8,11 @@
         <StackLayout HorizontalOptions="CenterAndExpand"
                      VerticalOptions="CenterAndExpand">
             <Entry x:Name="etBusca"></Entry>
-            <c:Icon x:Name="meuIcone" FontSize="40" TextColor="Blue">
+            <!--<c:Icon x:Name="meuIcone" FontSize="40" TextColor="Blue">
                 <c:Icon.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Icon_Tapped" ></TapGestureRecognizer>
                 </c:Icon.GestureRecognizers>
-            </c:Icon>
+            </c:Icon>-->
             <ListView x:Name="lvForns" 
                       ItemTapped="LvForns_ItemTapped"
                       HasUnevenRows="True">
@@ -31,9 +31,9 @@
                                     <RowDefinition Height="auto"/>
                                     <RowDefinition Height="auto"/>
                                 </Grid.RowDefinitions>
-                                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" 
                                     Source="{Binding ImgName}" />
-                                <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
+                                <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" TextColor="OrangeRed"
                                     Text="{Binding RazaoSocial}" FontAttributes="Bold" FontSize="Large"/>
                                 <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
                                        Text="{Binding Distancia}" />
