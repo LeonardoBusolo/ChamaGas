@@ -15,12 +15,17 @@ namespace ChamaGas
         {
             InitializeComponent();
             //
-            //MainPage = new NavigationPage(new MasterView());
+            //MainPage = new NavigationPage(new MasterView())
+            
 
             //Habilita pagina principal
             Conexao.Initialize();
 
             MainPage = new MasterView();
+
+            // tentativa colocar cor barra menu SEM SUCESSO
+            //MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.OrangeRed);
+            
         }
 
         protected override void OnStart()

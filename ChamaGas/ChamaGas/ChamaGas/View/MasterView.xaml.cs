@@ -24,7 +24,9 @@ namespace ChamaGas.View
             {
                 Title = "ChamaGas",
                 Icon = "",
-            });
+
+            })
+            { BarBackgroundColor = Color.OrangeRed};
 
             // MENU
             this.Master = new MenuView()
@@ -35,6 +37,8 @@ namespace ChamaGas.View
 
             //Inicializa a navegacao Master detail page
             NavegacaoMasterDetail = this;
+
+           
 
         }
     }

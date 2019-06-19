@@ -6,20 +6,20 @@
     <ContentPage.Content>
         <StackLayout>
             <Frame     BackgroundColor="OrangeRed"
-                       CornerRadius="30"
-                       HeightRequest="72"
-                       WidthRequest="72"
+                       CornerRadius="20"
+                       HeightRequest="40"
+                       WidthRequest="40"
                        HasShadow="True"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
-                       Opacity="0.65"
-                       Margin="10"
+                       Opacity="0.75"
+                       Margin="5"
                        >
                 <StackLayout VerticalOptions="Center"
                              HorizontalOptions="Center">
                     <!--<Image Source="bottle64.png"></Image>-->
                     <c:Icon x:Name="meuIcone" 
-                        FontSize="32" 
+                        FontSize="24" 
                         TextColor="White" 
                         />
                 </StackLayout>
@@ -30,7 +30,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <c:Icon Text="{Binding Icone}" Margin="15,5" VerticalOptions="Center" TextColor="{Binding CorLetra}"/>
+                                <c:Icon Text="{Binding Icone}" Margin="15,5" VerticalOptions="Center" TextColor= "OrangeRed"/>
                                 <Label Text="{Binding Titulo}" VerticalOptions="Center" TextColor="{Binding CorLetra}"/>
                             </StackLayout>
                         </ViewCell>
