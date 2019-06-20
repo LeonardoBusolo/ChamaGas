@@ -1,26 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:c="clr-namespace:ChamaGas.Components"
              x:Class="ChamaGas.View.LoginView">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout VerticalOptions="Center"
+                     HorizontalOptions="Center">
+            <Frame     BackgroundColor="OrangeRed"
+                       CornerRadius="20"
+                       HeightRequest="40"
+                       WidthRequest="40"
+                       HasShadow="True"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Opacity="0.75"
+                       Margin="5"
+                       >
+                <StackLayout VerticalOptions="Center"
+                             HorizontalOptions="Center">
+                    <!--<Image Source="bottle64.png"></Image>-->
+                    <c:Icon x:Name="meuIcone" 
+                        FontSize="24" 
+                        TextColor="White" 
+                        />
+                </StackLayout>
+            </Frame>
             <Label x:Name="lblEmail" 
                    Text="Email"/>
             <Entry x:Name="entEmail"
-                   Placeholder="Digite email login"
+                   Placeholder="Login email" FontSize="Small"
                    Text="{Binding Email}"/>
             <Label x:Name="lblSenha" 
                    Text="Senha"/>
             <Entry x:Name="entSenha"
                    Placeholder="Senha"
                    IsPassword="True"
+                   FontSize="Small"
                    Text="{Binding Senha}"/>
+            <Label x:Name="lblErro"
+                   IsVisible="False" 
+                   TextColor="Red"
+                   VerticalTextAlignment="Center"
+                   FontSize="Small"
+                   FontAttributes="Italic"/>
             <Button x:Name="btnEntrar" 
                     Text="Entrar"
                     TextColor="White"  
                     Padding="8"
                     WidthRequest="160"
                     Clicked="BtnEntrar_Clicked"/>
+            <Button x:Name="btnRegistrar"
+                    Text="Registra-se"
+                    Clicked="BtnRegistrar_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

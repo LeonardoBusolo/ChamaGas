@@ -6,9 +6,9 @@
     <ContentPage.Content>
         <StackLayout>
             <Frame     BackgroundColor="OrangeRed"
-                       CornerRadius="20"
-                       HeightRequest="40"
-                       WidthRequest="40"
+                       CornerRadius="10"
+                       HeightRequest="20"
+                       WidthRequest="20"
                        HasShadow="True"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
@@ -19,7 +19,7 @@
                              HorizontalOptions="Center">
                     <!--<Image Source="bottle64.png"></Image>-->
                     <c:Icon x:Name="meuIcone" 
-                        FontSize="24" 
+                        FontSize="12" 
                         TextColor="White" 
                         />
                 </StackLayout>

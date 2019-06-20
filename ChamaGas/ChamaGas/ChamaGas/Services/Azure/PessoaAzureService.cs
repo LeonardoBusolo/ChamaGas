@@ -5,11 +5,35 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace ChamaGas.Services.Azure
 {
     public class PessoaAzureService : AzureService<Pessoa>
     {
+        //regras de negocio no banco de dados
+        //Autenticação de usuario
+        public async Task<Pessoa> AutenticarUsuario(string email, string senha)
+        {
+            try
+            {
+                //Lista a tabela pessoas
+                var pessoas = await this.ListarRegistroAsync();
+                // Faz a consulta especifica do usuario na tableas
+                return pessoas.FirstOrDefault(p => p.Email == email
+                                                && p.Senha == senha);
+            }
+            catch (Exception erro)
+            {
+
+                Debug.WriteLine(erro);
+                return null;
+            }
+        }
+
+        //Obter cliente 
+
+
         public async Task<IEnumerable<Pessoa>> List(string busca)
         {
             //IEnumerable<Pessoa_MD> listaRetorno = new List<Pessoa_MD>();
@@ -46,5 +70,7 @@ namespace ChamaGas.Services.Azure
 
             return listaRetorno;
         }
+
+
     }
 }

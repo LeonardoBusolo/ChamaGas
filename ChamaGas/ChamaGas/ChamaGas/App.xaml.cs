@@ -21,7 +21,8 @@ namespace ChamaGas
             //Habilita pagina principal
             Conexao.Initialize();
 
-            MainPage = new MasterView();
+            //MainPage = new MasterView();
+            MainPage = new LoginView();
 
             // tentativa colocar cor barra menu SEM SUCESSO
             //MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.OrangeRed);
