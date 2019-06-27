@@ -1,5 +1,6 @@
 ﻿using ChamaGas.Helpers;
 using ChamaGas.View;
+using MonkeyCache.SQLite;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,6 +21,12 @@ namespace ChamaGas
 
             //Habilita pagina principal
             Conexao.Initialize();
+
+
+            Barrel.ApplicationId = "ChamaGasCacheBd";
+
+            //removes all expired data
+            Barrel.Current.EmptyExpired();
 
             //MainPage = new MasterView();
             MainPage = new LoginView();

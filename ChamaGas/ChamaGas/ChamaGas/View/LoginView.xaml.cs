@@ -1,6 +1,7 @@
 ﻿using ChamaGas.Helpers;
 using ChamaGas.Model;
 using ChamaGas.Services.Azure;
+using MonkeyCache.SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,40 +28,59 @@ namespace ChamaGas.View
         public LoginView ()
 		{
 			InitializeComponent ();
+            
+
             pessoaAzureServico = new PessoaAzureService();
             usuarioModel = new UsuarioModel();
 
             //APi Edu
             usuario = new Usuario();
-            this.BindingContext = usuario;
+            this.BindingContext = usuarioModel;
 
+            
 
             meuIcone.Text = Font_Index.fire;
         }
 
         private async void BtnEntrar_Clicked(object sender, EventArgs e)
         {
+            BloquearTela(true);
             if (ValidarDados())
             {
                 var pessoa = await pessoaAzureServico.AutenticarUsuario(usuarioModel.Email, usuarioModel.Senha);
                 //Verificação da autenticao do usuario
                 if (pessoa != null)
                 {
-                    usuarioModel.Id = pessoa.Id;
-                    usuarioModel.Email = pessoa.Email;
-                    usuarioModel.Senha = pessoa.Senha;
-                    usuarioModel.Permissao = pessoa.Tipo;
-                    usuarioModel.Autenticado = true;
-                    //salvar em banco de dados
+                    //usuarioModel.Id = pessoa.Id;
+                    //usuarioModel.Email = pessoa.Email;
+                    //usuarioModel.Senha = pessoa.Senha;
+                    //usuarioModel.Permissao = pessoa.Tipo;
+                    //usuarioModel.Autenticado = true;
+
+
+                    //cache de dados para pessoa
+                    //salva os dados da pessoa
+                    Barrel.Current.Add(key: "pessoa", data: pessoa, expireIn: TimeSpan.FromMinutes(2));
 
                     //Defini nova MainPage (pagina principal)
                     App.Current.MainPage = new MasterView();
+                    BloquearTela(false);
+                }
+                else
+                {
+                    BloquearTela(false);
+                    await DisplayAlert("Atenção", "Conta não encontrada", "Fechar");
                 }
             }
             else
             {
                 await DisplayAlert("Atenção", "Não foi possivel autenticar usuario", "Fechar");
+
             }
+
+            BloquearTela(false);
+
+            return;
 
 
             //Imprimir dados APII EDU
@@ -87,15 +107,50 @@ namespace ChamaGas.View
                 lblErro.Text = "Por favor informe os dados da senha para autenticação";
                 return false;
             }
-            else if (entSenha.Text.Length > 8)
+            else if (entSenha.Text.Length < 4)
             {
                 lblErro.IsVisible = true;
-                lblErro.Text = "Senha invalidade";
+                lblErro.Text = "Senha invalida";
                 return false;
             }
-
+            lblErro.Text = string.Empty;
                 return true;
+        }
 
+        private void BloquearTela (bool resultado)
+        {
+            //default
+            aiCarregar.IsVisible = true;
+            aiCarregar.IsRunning = true;
+            entEmail.IsEnabled = false;
+            entSenha.IsEnabled = false;
+            btnEntrar.IsEnabled = false;
+            btnRegistrar.IsEnabled = false;
+
+            if (!resultado)
+            {
+                aiCarregar.IsVisible = false;
+                aiCarregar.IsRunning = false;
+                entEmail.IsEnabled = true;
+                entSenha.IsEnabled = true;
+                btnEntrar.IsEnabled = true;
+                btnRegistrar.IsEnabled = true;
+            }
+        }
+
+        private void verificarLogin()
+        {
+            var usuarioLogado = Barrel.Current.Get<Pessoa>("pessoa");
+            if (usuarioLogado != null)
+            {
+                App.Current.MainPage = new MasterView();
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            verificarLogin();
         }
     }
 }

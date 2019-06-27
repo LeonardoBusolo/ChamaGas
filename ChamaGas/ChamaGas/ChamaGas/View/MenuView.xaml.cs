@@ -1,5 +1,6 @@
 ﻿using ChamaGas.Helpers;
 using ChamaGas.Model;
+using MonkeyCache.SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,22 @@ namespace ChamaGas.View
 	{
         List<Pagina> paginas;
 
+        // alinhar menu 
+        //Pessoa pessoaContext;
+
 		public MenuView ()
 		{
 			InitializeComponent ();
+
+            // alinhar menu
+            //var pessoa = Barrel.Current.Get<Pessoa>("pessoa");
+            //if (pessoa != null)
+            //{
+            //    pessoaContext = pessoa;
+            //}
+
+
+            ExibirPessoa();
             IniciarLista();
             meuIcone.Text = Font_Index.fire;
         }
@@ -107,6 +121,20 @@ namespace ChamaGas.View
                 MasterView.NavegacaoMasterDetail.Detail.Navigation.PushAsync(paginaView);
                 //Desativa o item selecionado
                 lvMenu.SelectedItem = null;
+            }
+        }
+
+        private void ExibirPessoa()
+        {
+            var pessoa = Barrel.Current.Get<Pessoa>("pessoa");
+            if (pessoa != null)
+            {
+                vNome.Text = pessoa.RazaoSocial;
+                vEmail.Text = pessoa.Email;
+                vTelefone.Text = pessoa.Telefone;
+                Uri uri = new Uri(@"https://picsum.photos/200/300");
+                vFoto.Source = ImageSource.FromUri(uri);
+                //vFoto.Source = ImageSource.FromStream
             }
         }
     }

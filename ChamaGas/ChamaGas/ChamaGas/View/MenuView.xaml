@@ -24,6 +24,17 @@
                         />
                 </StackLayout>
             </Frame>
+            <StackLayout Orientation="Horizontal">
+                <Image x:Name="vFoto"
+                       Aspect="AspectFill"
+                       HeightRequest="48"
+                       WidthRequest="48"/>
+                <StackLayout>
+                    <Label x:Name="vNome"/>
+                    <Label x:Name="vEmail"/>
+                    <Label x:Name="vTelefone"/>
+                </StackLayout>   
+            </StackLayout>
             <ListView x:Name="lvMenu"
                       ItemTapped="LvMenu_ItemTapped">
                 <ListView.ItemTemplate>

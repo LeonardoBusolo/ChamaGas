@@ -52,6 +52,10 @@
             <Button x:Name="btnRegistrar"
                     Text="Registra-se"
                     Clicked="BtnRegistrar_Clicked"/>
+            <ActivityIndicator x:Name="aiCarregar"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"
+                               IsVisible="False"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
