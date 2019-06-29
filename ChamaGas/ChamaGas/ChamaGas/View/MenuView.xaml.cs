@@ -42,48 +42,76 @@ namespace ChamaGas.View
             paginas = new List<Pagina>();
             paginas.Add(new Pagina
             {
-                Titulo = "Pessoa",
+                Titulo = "Perfil",
                 Icone = Font_Index.user,
                 PaginaView = typeof(PessoaView)
             });
 
             paginas.Add(new Pagina
             {
-                Titulo = "Login",
-                Icone = Font_Index.key,
-                PaginaView = typeof(LoginView)
+                Titulo = "Produtos",
+                Icone = Font_Index.barcode,
+                PaginaView = typeof(ProdutosView)
             });
 
             paginas.Add(new Pagina
             {
                 Titulo = "Lista Pedidos",
                 Icone = Font_Index.list,
-                PaginaView = typeof(PessoaView)
-            });
-
-            paginas.Add(new Pagina
-            {
-                Titulo = "Mapa",
-                Icone = Font_Index.map,
-                PaginaView = typeof(EssentialsMapaView)
-            });
-
-            paginas.Add(new Pagina
-            {
-                Titulo = "Camera",
-                Icone = Font_Index.camera_retro,
-                PaginaView = typeof(CameraView)
-            });
-
-            paginas.Add(new Pagina
-            {
-                Titulo = "Lista Usuarios",
-                Icone = Font_Index.users,
-                PaginaView = typeof(UsuarioView)
-            });
+                PaginaView = typeof(PedidosView)
+            });            
 
             lvMenu.ItemsSource = paginas;
         }
+
+        //Lista Criada Inicialmente para aprender Lista
+        //public void IniciarListaInicial()
+        //{
+        //    paginas = new List<Pagina>();
+        //    paginas.Add(new Pagina
+        //    {
+        //        Titulo = "Perfil",
+        //        Icone = Font_Index.user,
+        //        PaginaView = typeof(PessoaView)
+        //    });
+
+        //    paginas.Add(new Pagina
+        //    {
+        //        Titulo = "Produtos",
+        //        Icone = Font_Index.barcode,
+        //        PaginaView = typeof(HomeView)
+        //    });
+
+        //    paginas.Add(new Pagina
+        //    {
+        //        Titulo = "Lista Pedidos",
+        //        Icone = Font_Index.list,
+        //        PaginaView = typeof(PedidosView)
+        //    });
+
+        //    paginas.Add(new Pagina
+        //    {
+        //        Titulo = "Mapa",
+        //        Icone = Font_Index.map,
+        //        PaginaView = typeof(EssentialsMapaView)
+        //    });
+
+        //    paginas.Add(new Pagina
+        //    {
+        //        Titulo = "Camera",
+        //        Icone = Font_Index.camera_retro,
+        //        PaginaView = typeof(CameraView)
+        //    });
+
+        //    paginas.Add(new Pagina
+        //    {
+        //        Titulo = "Lista Usuarios",
+        //        Icone = Font_Index.users,
+        //        PaginaView = typeof(UsuarioView)
+        //    });
+
+        //    lvMenu.ItemsSource = paginas;
+        //}
 
         private void LvMenu_ItemTapped(object sender, ItemTappedEventArgs e)
         {
@@ -102,8 +130,11 @@ namespace ChamaGas.View
 
                 //Iniciar Navegação
                 MasterView.NavegacaoMasterDetail.IsPresented = false;
-                MasterView.NavegacaoMasterDetail.Detail.Navigation.PopToRootAsync();
 
+                //Navega para a pagina 
+                //comando altera toda master detail
+                //MasterView.NavegacaoMasterDetail.Detail.Navigation.PopToRootAsync();
+                
                 //Cria a pagina view
                 Page paginaView = null;
                 if (pagina.PaginaView == typeof(PessoaView))
@@ -114,11 +145,14 @@ namespace ChamaGas.View
                 {
                     paginaView = Activator.CreateInstance(pagina.PaginaView) as Page;
                 }
-                    
+
 
 
                 //Navega para a pagina 
-                MasterView.NavegacaoMasterDetail.Detail.Navigation.PushAsync(paginaView);
+                //comando altera toda master detail
+                //MasterView.NavegacaoMasterDetail.Detail.Navigation.PushAsync(paginaView);
+                MasterView.NavegacaoMasterDetail.Detail = new NavigationPage(paginaView);
+
                 //Desativa o item selecionado
                 lvMenu.SelectedItem = null;
             }

@@ -20,13 +20,15 @@ namespace ChamaGas.View
             InitializeComponent();
             // CONFIGURAÇÃO
             // AREA PRINCIPAL
-            this.Detail = new NavigationPage(new HomeView()
+            this.Detail = new NavigationPage(new ProdutosView()
             {
                 Title = "ChamaGas",
                 Icon = "",
 
             })
-            { BarBackgroundColor = Color.OrangeRed};
+            { BarBackgroundColor = Color.OrangeRed };
+
+
 
             // MENU
             this.Master = new MenuView()

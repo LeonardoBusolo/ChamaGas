@@ -1,5 +1,6 @@
 ﻿using ChamaGas.Interface;
 using ChamaGas.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,8 +21,14 @@ namespace ChamaGas.Model
 
         public DateTime DataEntrega { get; set; }
 
-        //Metodo construtor
+        [JsonIgnore]
+        public string ValorTotal { get; set; }
 
+        [JsonIgnore]
+        public string NomeFornecedor { get; set; }
+
+
+        //Metodo construtor
         //ctor +tab (cria metodo construtor)
         public Pedido(string clienteId, string fornecedorId)
         {

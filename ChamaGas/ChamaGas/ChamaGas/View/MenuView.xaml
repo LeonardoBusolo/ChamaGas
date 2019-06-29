@@ -33,7 +33,7 @@
                     <Label x:Name="vNome"/>
                     <Label x:Name="vEmail"/>
                     <Label x:Name="vTelefone"/>
-                </StackLayout>   
+                </StackLayout>
             </StackLayout>
             <ListView x:Name="lvMenu"
                       ItemTapped="LvMenu_ItemTapped">
@@ -48,6 +48,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <StackLayout HorizontalOptions="End">
+                <Label Text="Sair" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

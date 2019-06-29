@@ -1,5 +1,6 @@
 ﻿using ChamaGas.Interface;
 using ChamaGas.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,5 +22,20 @@ namespace ChamaGas.Model
 
         public string Unidade { get; set; }
 
+        [JsonIgnore]
+        public string FornecedorNome { get; set; }
+
+        [JsonIgnore]
+        public string Distancia { get; set; }
+
+        [JsonIgnore]
+        public double Latitude { get; set; }
+
+        [JsonIgnore]
+        public double Longitude { get; set; }
     }
 }
+
+
+
+      

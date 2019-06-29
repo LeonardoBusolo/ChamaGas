@@ -1,6 +1,7 @@
 ﻿using ChamaGas.Model;
 using ChamaGas.Services;
 using ChamaGas.Services.Azure;
+using MonkeyCache.SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,9 +36,10 @@ namespace ChamaGas.View
             //Instanciando serviço
             pessoaAzureServico = new PessoaAzureService();
 
-            if (usuario == null)
+            if (usuario == null || string.IsNullOrEmpty(usuario.Id))
             {
-                usuario = new Pessoa();
+                usuario = Barrel.Current.Get<Pessoa>("pessoa");
+
             }
 
             pessoa = usuario;

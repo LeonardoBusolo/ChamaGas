@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChamaGas.View.ProdutosView"
+             BackgroundColor="WhiteSmoke">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="lblTitulo" 
+                   FontAttributes="Bold"
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   Margin="0,15"/>
+            <ListView x:Name="lvProdutos"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="15,15,15,0"
+                                  Padding="10,10,10,10"
+                                  BackgroundColor="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <!--<Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Text="{Binding Foto}"/>-->
+                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Descricao}"/>
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding FornecedorNome}"/>
+                                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Preco}" HorizontalOptions="Start"/>
+                                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Distancia}" HorizontalOptions="End"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
