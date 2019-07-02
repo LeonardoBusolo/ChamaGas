@@ -46,6 +46,9 @@ namespace ChamaGas.View
             this.BindingContext = pessoa;
 
             ListarTipo();
+
+            imgFoto.Source = pessoa.FotoSource;
+            picTipo.SelectedItem = pessoa.Tipo;
         }
 
         private async void EtCep_Unfocused(object sender, FocusEventArgs e)
@@ -136,7 +139,8 @@ namespace ChamaGas.View
             pessoa.Telefone = etTelefone.Text;
             pessoa.Email = etEmail.Text;
             pessoa.Senha = etSenha.Text;
-
+            var pessoa_Bindada = ((Pessoa)this.BindingContext);
+            pessoa.FotoByte = pessoa_Bindada.FotoByte;
 
 
             if (string.IsNullOrWhiteSpace(pessoa.Id))
@@ -145,6 +149,8 @@ namespace ChamaGas.View
             }
             else
             {
+                Barrel.Current.Empty("pessoa");
+                Barrel.Current.Add(key: "pessoa", data: pessoa, expireIn: TimeSpan.FromMinutes(2));
                 return await pessoaAzureServico.AlterarRegistroAsync(pessoa);
             }
         }

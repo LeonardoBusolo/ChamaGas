@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using ChamaGas.Extension;
 
 namespace ChamaGas.Model
 {
@@ -14,7 +15,14 @@ namespace ChamaGas.Model
     {
         public string Id { get; set; }
 
-        public string Tipo { get; set; }
+        //public string Tipo { get; set; }
+
+        private string tipo;
+        public string Tipo
+        {
+            get { return tipo; }
+            set { SetProperty(ref tipo, value); }
+        }
 
         public string RazaoSocial { get; set; }
 
@@ -36,12 +44,44 @@ namespace ChamaGas.Model
 
         public string Telefone { get; set; }
 
-
+        //byteArray convertido para string
         private string foto;
         public string Foto {
             get { return foto; }
             set { SetProperty(ref foto, value); }
         }
+
+        //byte[]
+        private byte[] fotoByte;
+        [JsonIgnore]
+        public byte[] FotoByte
+        {
+            get {
+                if (fotoByte == null && Foto != null)
+                    FotoByte = Convert.FromBase64String(Foto);
+                return fotoByte;
+            }
+
+            set {
+                SetProperty(ref fotoByte, value);                
+
+                if (value != null)
+                {
+                    FotoSource = value.ToImagemSource();
+                    Foto = Convert.ToBase64String(value);
+                }
+            }
+        }
+
+        //imageSource
+        private ImageSource  fotoSource;
+        [JsonIgnore]
+        public ImageSource FotoSource
+        {
+            get { return fotoSource; }
+            set { SetProperty(ref fotoSource, value); }
+        }
+
 
         public double Latitude { get; set; }
 
@@ -92,11 +132,12 @@ namespace ChamaGas.Model
 
         public async void TiraFoto()
         {
-            Foto_MD md = await Photo.TiraFoto();
-            this.Foto = md.pathGaleria;
+            Foto_MD md = await Photo.TiraFoto();            
 
             BotaoVisivel = false;
             ImageVisivel = true;
+
+            this.FotoByte = md.fotoArray;
         }
 
         

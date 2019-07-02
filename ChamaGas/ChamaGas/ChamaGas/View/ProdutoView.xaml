@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:ChamaGas.Components"
+             x:Class="ChamaGas.View.ProdutoView">
+    <ContentPage.Content>
+        <ScrollView>
+            <TableView HasUnevenRows="True" >
+           <TableRoot>
+               <TableSection>
+                    <TextCell Text="{Binding Id}"/>
+                    <TextCell Text="{Binding FornecedorId}"/>
+                    <EntryCell Text="{Binding Descricao}" Placeholder="Descrição"/>
+                    <EntryCell Text="{Binding Unidade}" Placeholder="Medida"/>
+                    <EntryCell Text="{Binding Preco}" Placeholder="Valor" Keyboard="Numeric"/>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="Foto:"/>
+
+                                <Image HeightRequest="120" 
+                                       IsVisible="{Binding  ImageVisivel}" 
+                                       x:Name="imgFoto" 
+                                       Source="{Binding FotoSource}"
+                                       Aspect="Fill" />
+
+                                <components:Btn_Icon BackgroundColor="Transparent"
+                                                     HorizontalOptions="End"
+                                                     VerticalOptions="End"
+                                                     x:Name="btnFoto" 
+                                                     FontSize="30"  
+                                                     TextColor="Gray"
+                                                     Clicked="BtnFoto_Clicked" />
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <Button x:Name="btnSalvar" Text="Salvar" Clicked="BtnSalvar_Clicked" />
+                        </ViewCell>
+                </TableSection>
+           </TableRoot>
+       </TableView>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

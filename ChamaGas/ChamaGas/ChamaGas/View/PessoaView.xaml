@@ -14,11 +14,21 @@
                         <ViewCell>
                             <StackLayout>
                                 <Label Text="Foto:"/>
-                                <components:Btn_Icon IsVisible="{Binding BotaoVisivel}" BackgroundColor="Transparent"
-                                                     Text="{Binding TextoBotaoFoto}" FontSize="30"  TextColor="Gray"
+                                
+                                <Image HeightRequest="120" 
+                                       IsVisible="{Binding  ImageVisivel}" 
+                                       x:Name="imgFoto" 
+                                       Source="{Binding FotoSource}"
+                                       Aspect="Fill" />
+                                
+                                <components:Btn_Icon 
+                                                     BackgroundColor="Transparent"
+                                                     HorizontalOptions="End"
+                                                     VerticalOptions="End"
+                                                     Text="{Binding TextoBotaoFoto}" 
+                                                     FontSize="30"  
+                                                     TextColor="Gray"
                                                      Command="{Binding TirarFotoCommand}"/>
-                                <Image HeightRequest="120" IsVisible="{Binding  ImageVisivel}" x:Name="imgFoto" Source="{Binding Foto}"
-                                         Aspect="Fill" />
                             </StackLayout>
                             
                             
