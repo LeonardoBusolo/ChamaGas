@@ -59,7 +59,14 @@ namespace ChamaGas.View
                 Titulo = "Lista Pedidos",
                 Icone = Font_Index.list,
                 PaginaView = typeof(PedidosView)
-            });            
+            });
+
+            paginas.Add(new Pagina
+            {
+                Titulo = "Galeria",
+                Icone = Font_Index.images,
+                PaginaView = typeof(GaleriaView)
+            });
 
             lvMenu.ItemsSource = paginas;
         }
@@ -171,5 +178,23 @@ namespace ChamaGas.View
                 //vFoto.Source = ImageSource.FromStream
             }
         }
+  
+
+
+        private void GesSair_Tapped(object sender, EventArgs e)
+        {
+            //Finalizar sessao 
+            Barrel.Current.Empty("pessoa");
+
+            //fechar o aplicativo
+         
+        }
+
+        private void GesIntro_Tapped(object sender, EventArgs e)
+        {
+            this.Navigation.PushModalAsync(new IntroView());
+        }
     }
+
+    
 }

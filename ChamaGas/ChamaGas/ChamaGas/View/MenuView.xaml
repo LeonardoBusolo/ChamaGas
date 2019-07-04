@@ -48,9 +48,26 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout HorizontalOptions="End">
-                <Label Text="Sair" />
-            </StackLayout>
+            <Label x:Name="lblIntro" Text="Intro"
+                   Margin="8"
+                   VerticalOptions="End"
+                   BackgroundColor="Red">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="gesIntro" 
+                                              Tapped="GesIntro_Tapped"
+                                              NumberOfTapsRequired="2"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label x:Name="lblSair" Text="Sair"
+                   Margin="8"
+                   VerticalOptions="End"
+                   BackgroundColor="Red">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="gesSair" 
+                                              Tapped="GesSair_Tapped"
+                                              NumberOfTapsRequired="2"/>
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

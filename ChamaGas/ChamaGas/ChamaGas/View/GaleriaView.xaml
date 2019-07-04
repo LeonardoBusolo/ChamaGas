@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChamaGas.View.GaleriaView">
+    <ContentPage.Content>
+        <ScrollView>
+            <FlexLayout x:Name="flxGaleria"
+                        Direction="Row"
+                        Wrap="Wrap"
+                        WidthRequest="80"
+                        HeightRequest="120"
+                        >
+
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChamaGas.View.IntroView">
+    <ContentPage.Content>
+        <ScrollView Orientation="Both">
+            <FlexLayout>
+                <Frame WidthRequest="300"
+                   HeightRequest="400">
+                    <FlexLayout Direction="Column">
+                        <Image Source="https://picsum.photos/200/300"
+                               Aspect="Fill"/>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Titulo" FontSize="Large" />
+                                    <Span Text="Mussum Ipsum, cacilds vidis litro abertis. Cevadis im ampola pa arma uma pindureta. Copo furadis é disculpa de bebadis, arcu quam euismod magna. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Sapien in monti palavris qui num significa nadis i pareci latim." FontSize="Default" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </FlexLayout>
+                </Frame>
+
+                <Frame WidthRequest="300"
+                   HeightRequest="400">
+                    <FlexLayout Direction="Column">
+                        <Image Source="https://picsum.photos/200/300"
+                               Aspect="Fill"/>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Titulo" FontSize="Large" />
+                                    <Span Text="Mussum Ipsum, cacilds vidis litro abertis. Cevadis im ampola pa arma uma pindureta. Copo furadis é disculpa de bebadis, arcu quam euismod magna. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Sapien in monti palavris qui num significa nadis i pareci latim." FontSize="Default" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </FlexLayout>
+                </Frame>
+
+                <Frame WidthRequest="300"
+                   HeightRequest="400">
+                    <FlexLayout Direction="Column">
+                        <Image Source="https://picsum.photos/200/300"
+                               Aspect="Fill"/>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Titulo" FontSize="Large" />
+                                    <Span Text="Mussum Ipsum, cacilds vidis litro abertis. Cevadis im ampola pa arma uma pindureta. Copo furadis é disculpa de bebadis, arcu quam euismod magna. Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis. Sapien in monti palavris qui num significa nadis i pareci latim." FontSize="Default" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Button x:Name="btnVoltar"
+                                Text="Voltar"
+                                Clicked="BtnVoltar_Clicked"/>
+                    </FlexLayout>
+                </Frame>
+                         
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
