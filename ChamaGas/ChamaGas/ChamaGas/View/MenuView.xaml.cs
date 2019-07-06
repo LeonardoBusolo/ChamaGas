@@ -1,4 +1,5 @@
-﻿using ChamaGas.Helpers;
+﻿using ChamaGas.Extension;
+using ChamaGas.Helpers;
 using ChamaGas.Model;
 using MonkeyCache.SQLite;
 using System;
@@ -173,9 +174,13 @@ namespace ChamaGas.View
                 vNome.Text = pessoa.RazaoSocial;
                 vEmail.Text = pessoa.Email;
                 vTelefone.Text = pessoa.Telefone;
-                Uri uri = new Uri(@"https://picsum.photos/200/300");
-                vFoto.Source = ImageSource.FromUri(uri);
-                //vFoto.Source = ImageSource.FromStream
+
+                pessoa.FotoSource = pessoa.FotoByte.ToImagemSource();
+                vFoto.Source = pessoa.FotoSource;
+                //Uri uri = new Uri(@"https://picsum.photos/200/300");
+                //vFoto.Source = ImageSource.FromUri(uri);
+
+
             }
         }
   
@@ -187,6 +192,7 @@ namespace ChamaGas.View
             Barrel.Current.Empty("pessoa");
 
             //fechar o aplicativo
+            App.Current.MainPage = new LoginView();
          
         }
 

@@ -51,7 +51,7 @@
             <Label x:Name="lblIntro" Text="Intro"
                    Margin="8"
                    VerticalOptions="End"
-                   BackgroundColor="Red">
+                   BackgroundColor="Gray">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer x:Name="gesIntro" 
                                               Tapped="GesIntro_Tapped"
@@ -61,7 +61,7 @@
             <Label x:Name="lblSair" Text="Sair"
                    Margin="8"
                    VerticalOptions="End"
-                   BackgroundColor="Red">
+                   BackgroundColor="OrangeRed">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer x:Name="gesSair" 
                                               Tapped="GesSair_Tapped"

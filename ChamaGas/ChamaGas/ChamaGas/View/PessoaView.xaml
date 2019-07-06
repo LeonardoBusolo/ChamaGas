@@ -21,14 +21,14 @@
                                        Source="{Binding FotoSource}"
                                        Aspect="Fill" />
                                 
-                                <components:Btn_Icon 
+                                <components:Btn_Icon x:Name="btnFoto"
                                                      BackgroundColor="Transparent"
                                                      HorizontalOptions="End"
                                                      VerticalOptions="End"
                                                      Text="{Binding TextoBotaoFoto}" 
                                                      FontSize="30"  
                                                      TextColor="Gray"
-                                                     Command="{Binding TirarFotoCommand}"/>
+                                                     Clicked="BtnFoto_Clicked"/>
                             </StackLayout>
                             
                             

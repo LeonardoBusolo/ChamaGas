@@ -107,7 +107,7 @@ namespace ChamaGas.View
                 lblErro.Text = "Por favor informe os dados da senha para autenticação";
                 return false;
             }
-            else if (entSenha.Text.Length < 4)
+            else if (entSenha.Text.Length < 1)
             {
                 lblErro.IsVisible = true;
                 lblErro.Text = "Senha invalida";

@@ -27,7 +27,8 @@ namespace ChamaGas.View
         {
             InitializeComponent();
             usuarioLogado = Barrel.Current.Get<Pessoa>("pessoa");
-            
+
+            icoCarrinho.Text = Font_Index.shopping_cart;
             
         }
 
@@ -38,16 +39,21 @@ namespace ChamaGas.View
             eh_distribuidor = usuarioLogado.Tipo == "Distribuidor";
 
             if (eh_distribuidor)
+            {
                 AdicionaBotaoNovoProduto();
-
+            }
+            else
+            {
+                AdicionarBarraCarrinho();
+            }
 
             lblTitulo.Text = eh_distribuidor ? "Meus Produtos" : "Lista de Produtos";
 
             IEnumerable<Pessoa> pessoas = await pessoa_Service.ListarRegistroAsync();
             IEnumerable<Produto> produtos = await produto_Service.ListarRegistroAsync();
             if (eh_distribuidor) { 
-                pessoas.Where(p => p.Id == usuarioLogado.Id).ToList();
-                produtos.Where(p => p.FornecedorId == usuarioLogado.Id).ToList();
+                pessoas = pessoas.Where(p => p.Id == usuarioLogado.Id).ToList();
+                produtos = produtos.Where(p => p.FornecedorId == usuarioLogado.Id).ToList();
             }
             else
                 pessoas.Where(p => p.Tipo == "Distribuidor").ToList();
@@ -111,9 +117,19 @@ namespace ChamaGas.View
             });
         }
 
+        private void AdicionarBarraCarrinho()
+        {
+            stackCarrinho.IsVisible = true;
+        }
+
         private void AbrirTelaCadatroProduto(object obj)
         {
             Navigation.PushAsync(new ProdutoView());
+        }
+
+        private void GesCarrinho_Tapped(object sender, EventArgs e)
+        {
+            this.Navigation.PushModalAsync(new CarrinhoView());
         }
     }
 }

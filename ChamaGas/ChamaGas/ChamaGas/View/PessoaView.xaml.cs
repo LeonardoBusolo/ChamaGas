@@ -1,4 +1,6 @@
-﻿using ChamaGas.Model;
+﻿using ChamaGas.Extension;
+using ChamaGas.Helpers;
+using ChamaGas.Model;
 using ChamaGas.Services;
 using ChamaGas.Services.Azure;
 using MonkeyCache.SQLite;
@@ -17,38 +19,33 @@ namespace ChamaGas.View
 	public partial class PessoaView : ContentPage
 	{
         //Serviços do Azure
-        PessoaAzureService pessoaAzureServico;
+        PessoaAzureService pessoaAzureServico = new PessoaAzureService();
         Pessoa pessoa;
 
-
-        Base_Services clientCep = new Base_Services(Base_Services.URL_VIACEP);
-
-        
-
-        
-                    
+        Base_Services clientCep = new Base_Services(Base_Services.URL_VIACEP);                                  
         //Base_Services clientApi = new Base_Services(Base_Services.URL_API);
 
+
+            Pessoa PessoaBC { get { return (Pessoa)BindingContext; } }
         //Metodo construtor vai receber uma pessoa por padrao
         public PessoaView (Pessoa usuario=null)
 		{
 			InitializeComponent ();
-            //Instanciando serviço
-            pessoaAzureServico = new PessoaAzureService();
-
+            ListarTipo();
+            
             if (usuario == null || string.IsNullOrEmpty(usuario.Id))
-            {
                 usuario = Barrel.Current.Get<Pessoa>("pessoa");
 
-            }
+
+            if (usuario == null)
+                usuario = new Pessoa();
 
             pessoa = usuario;
             this.BindingContext = pessoa;
 
-            ListarTipo();
-
+            pessoa.FotoSource = pessoa.FotoByte.ToImagemSource();
             imgFoto.Source = pessoa.FotoSource;
-            picTipo.SelectedItem = pessoa.Tipo;
+            
         }
 
         private async void EtCep_Unfocused(object sender, FocusEventArgs e)
@@ -61,7 +58,8 @@ namespace ChamaGas.View
             this.etBairro.Text = cep_ret.bairro;
             this.etLocalidade.Text = cep_ret.localidade;
             this.etUf.Text = cep_ret.uf;
-           
+
+            #region ocultar
             //perdido nao sei o que é
             //md.name = cep_ret.bairro;
             //md.job = cep_ret.localidade;
@@ -101,7 +99,7 @@ namespace ChamaGas.View
 
             //    await this.DisplayAlert("Erro", ex.Message, "OK");
             //}
-
+            #endregion
 
         }
 
@@ -164,7 +162,15 @@ namespace ChamaGas.View
             picTipo.SelectedIndex = 0;
         }
 
+        private async void BtnFoto_Clicked(object sender, EventArgs e)
+        {
+            Foto_MD md = await Photo.TiraFoto();
 
+            if (md == null)
+                return;
 
+            this.imgFoto.Source = md.fotoArray.ToImagemSource();
+            PessoaBC.FotoByte = md.fotoArray;
+        }
     }
 }

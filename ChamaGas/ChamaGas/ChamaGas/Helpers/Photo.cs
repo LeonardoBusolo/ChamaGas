@@ -25,6 +25,9 @@ namespace ChamaGas.Helpers
 
             });
 
+            if (photo == null)
+                return null;
+
             md.pathGaleria = photo.AlbumPath;
             md.pathInterno = photo.Path;
             md.fotoArray = photo.GetStream().ToByteArray();
