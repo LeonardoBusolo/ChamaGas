@@ -20,12 +20,20 @@ namespace ChamaGas.View
 
         private Produto produtoBC { get { return (Produto)this.BindingContext; } }
 
-		public ProdutoView ()
+		public ProdutoView (Produto produto=null)
 		{
 			InitializeComponent ();
 
-            this.BindingContext = new Produto();
 
+            //this.BindingContext = new Produto();
+
+            if (produto == null)
+                produto = new Produto();
+
+            Produto produtoo = produto;
+            this.BindingContext = produtoo;
+
+            
             var usuarioLogado = Barrel.Current.Get<Pessoa>("pessoa");
             produtoBC.FornecedorId = usuarioLogado.Id;
 

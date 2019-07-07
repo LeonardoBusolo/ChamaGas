@@ -18,27 +18,70 @@ namespace ChamaGas.View
 	{
         List<Pagina> paginas;
 
-        // alinhar menu 
-        //Pessoa pessoaContext;
+        Pessoa usuarioLogado;
+        bool eh_distribuidor;
 
-		public MenuView ()
+
+        public MenuView ()
 		{
 			InitializeComponent ();
 
-            // alinhar menu
-            //var pessoa = Barrel.Current.Get<Pessoa>("pessoa");
-            //if (pessoa != null)
-            //{
-            //    pessoaContext = pessoa;
-            //}
-
+            usuarioLogado = Barrel.Current.Get<Pessoa>("pessoa");
+            eh_distribuidor = usuarioLogado.Tipo == "Distribuidor";
 
             ExibirPessoa();
-            IniciarLista();
+
+            if (eh_distribuidor)
+                IniciarListaDistribuidor();
+            else
+                IniciarListaConsumidor();
+
+
             meuIcone.Text = Font_Index.fire;
         }
 
-        public void IniciarLista()
+        public void IniciarListaDistribuidor()
+        {
+            paginas = new List<Pagina>();
+            paginas.Add(new Pagina
+            {
+                Titulo = "Perfil",
+                Icone = Font_Index.user,
+                PaginaView = typeof(PessoaView)
+            });
+
+            paginas.Add(new Pagina
+            {
+                Titulo = "Meus Produtos",
+                Icone = Font_Index.barcode,
+                PaginaView = typeof(ProdutosView)
+            });
+
+            paginas.Add(new Pagina
+            {
+                Titulo = "Lista Pedidos",
+                Icone = Font_Index.list,
+                PaginaView = typeof(PedidosView)
+            });
+
+            paginas.Add(new Pagina
+            {
+                Titulo = "Lista Usuarios",
+                Icone = Font_Index.users,
+                PaginaView = typeof(UsuarioView)
+            });
+
+            //paginas.Add(new Pagina
+            //{
+            //    Titulo = "Galeria",
+            //    Icone = Font_Index.images,
+            //    PaginaView = typeof(GaleriaView)
+            //});
+
+            lvMenu.ItemsSource = paginas;
+        }
+
+        public void IniciarListaConsumidor()
         {
             paginas = new List<Pagina>();
             paginas.Add(new Pagina
@@ -57,17 +100,17 @@ namespace ChamaGas.View
 
             paginas.Add(new Pagina
             {
-                Titulo = "Lista Pedidos",
+                Titulo = "Meus Pedidos",
                 Icone = Font_Index.list,
                 PaginaView = typeof(PedidosView)
             });
 
-            paginas.Add(new Pagina
-            {
-                Titulo = "Galeria",
-                Icone = Font_Index.images,
-                PaginaView = typeof(GaleriaView)
-            });
+            //paginas.Add(new Pagina
+            //{
+            //    Titulo = "Galeria",
+            //    Icone = Font_Index.images,
+            //    PaginaView = typeof(GaleriaView)
+            //});
 
             lvMenu.ItemsSource = paginas;
         }
@@ -173,14 +216,11 @@ namespace ChamaGas.View
             {
                 vNome.Text = pessoa.RazaoSocial;
                 vEmail.Text = pessoa.Email;
+                vTipo.Text = pessoa.Tipo;
                 vTelefone.Text = pessoa.Telefone;
 
                 pessoa.FotoSource = pessoa.FotoByte.ToImagemSource();
                 vFoto.Source = pessoa.FotoSource;
-                //Uri uri = new Uri(@"https://picsum.photos/200/300");
-                //vFoto.Source = ImageSource.FromUri(uri);
-
-
             }
         }
   

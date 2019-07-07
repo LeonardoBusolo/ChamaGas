@@ -5,9 +5,10 @@
              x:Class="ChamaGas.View.ProdutoView">
     <ContentPage.Content>
         <ScrollView>
-            <TableView HasUnevenRows="True" >
-           <TableRoot>
-               <TableSection>
+            <TableView HasUnevenRows="True" 
+                       HeightRequest="300">
+                <TableRoot Title="Produto">
+                    <TableSection Title="Cadastro de Produto">
                     <TextCell Text="{Binding Id}"/>
                     <TextCell Text="{Binding FornecedorId}"/>
                     <EntryCell Text="{Binding Descricao}" Placeholder="Descrição"/>
@@ -17,7 +18,7 @@
                             <StackLayout>
                                 <Label Text="Foto:"/>
 
-                                <Image HeightRequest="120" 
+                                <Image HeightRequest="60" 
                                        IsVisible="{Binding  ImageVisivel}" 
                                        x:Name="imgFoto" 
                                        Source="{Binding FotoSource}"
@@ -32,11 +33,12 @@
                                                      Clicked="BtnFoto_Clicked" />
                             </StackLayout>
                         </ViewCell>
+                        
                         <ViewCell>
                             <Button x:Name="btnSalvar" Text="Salvar" Clicked="BtnSalvar_Clicked" />
                         </ViewCell>
-                </TableSection>
-           </TableRoot>
+                    </TableSection>
+                </TableRoot>
        </TableView>
         </ScrollView>
     </ContentPage.Content>

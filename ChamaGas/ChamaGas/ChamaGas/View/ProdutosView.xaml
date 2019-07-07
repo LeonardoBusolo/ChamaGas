@@ -11,14 +11,26 @@
                    FontSize="Large"
                    HorizontalOptions="Center"
                    Margin="0,15"/>
+            <SearchBar x:Name="sbBusca" 
+                       SearchButtonPressed="SbBusca_SearchButtonPressed"/>
             <StackLayout>
                 <ScrollView>
                     <ListView x:Name="lvProdutos"
                       HasUnevenRows="True"
-                      SeparatorVisibility="None">
+                      SeparatorVisibility="None"
+                      Refreshing="LvProdutos_Refreshing"
+                              ItemSelected="LvProdutos_ItemSelected">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem x:Name="btnRemover"
+                                          Text="Remover"
+                                          Icon=""
+                                          Clicked="BtnRemover_Clicked"
+                                          CommandParameter="{Binding Id}"
+                                          IsDestructive="True"/>
+                                    </ViewCell.ContextActions>
                                     <Grid Margin="15,15,15,0"
                                   Padding="10,10,10,10"
                                   BackgroundColor="White">

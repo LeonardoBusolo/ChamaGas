@@ -31,6 +31,7 @@
                        WidthRequest="48"/>
                 <StackLayout>
                     <Label x:Name="vNome"/>
+                    <Label x:Name="vTipo"/>
                     <Label x:Name="vEmail"/>
                     <Label x:Name="vTelefone"/>
                 </StackLayout>
