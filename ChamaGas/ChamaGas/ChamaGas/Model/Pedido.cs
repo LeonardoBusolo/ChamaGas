@@ -27,6 +27,25 @@ namespace ChamaGas.Model
         [JsonIgnore]
         public string NomeFornecedor { get; set; }
 
+        
+        //declarando para barra de carrinho ficar atualizada janela produtos & carrinho
+        public double totalPedido;
+        [JsonIgnore]
+        public double TotalPedido
+        {
+            get { return totalPedido;  }
+            set { SetProperty(ref totalPedido, value);  }
+        }
+
+        //declarando para barra de carrinho ficar atualizada janela produtos & carrinho
+        public int totalItens;
+        [JsonIgnore]
+        public int TotalItens
+        {
+            get { return totalItens; }
+            set { SetProperty(ref totalItens, value); }
+        }
+
 
         //Metodo construtor
         //ctor +tab (cria metodo construtor)

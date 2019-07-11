@@ -19,7 +19,7 @@
                       HasUnevenRows="True"
                       SeparatorVisibility="None"
                       Refreshing="LvProdutos_Refreshing"
-                              ItemSelected="LvProdutos_ItemSelected">
+                      ItemTapped="LvProdutos_ItemTapped" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -80,11 +80,11 @@
                        HorizontalOptions ="StartAndExpand"/>
                 <Label Text="Qtd:" FontSize="16" TextColor="White"
                        HorizontalOptions="End"/>
-                <Label Text="0" FontSize="16" TextColor="White"
+                <Label Text="{Binding TotalItens}" FontSize="16" TextColor="White"
                        HorizontalOptions="End"/>
                 <Label Text="| Valor" FontSize="16" TextColor="White"
                        HorizontalOptions="End"/>
-                <Label Text="0,00" FontSize="16" TextColor="White"
+                <Label Text="{Binding TotalPedido, StringFormat='{0:C2}'}" FontSize="16" TextColor="White"
                        HorizontalOptions="End"/>
             </StackLayout>
 

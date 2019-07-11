@@ -5,6 +5,7 @@ using ChamaGas.Services.Azure;
 using MonkeyCache.SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace ChamaGas.View
     public partial class ProdutosView : ContentPage
     {
         ProdutoAzureService produto_Service = new ProdutoAzureService();
-        PessoaAzureService  pessoa_Service = new PessoaAzureService();
+        PessoaAzureService pessoa_Service = new PessoaAzureService();
 
         Pessoa usuarioLogado;
         bool eh_distribuidor;
@@ -26,10 +27,13 @@ namespace ChamaGas.View
         public ProdutosView()
         {
             InitializeComponent();
-            usuarioLogado = Barrel.Current.Get<Pessoa>("pessoa");
+            this.BindingContext = CarrinhoView.pedido;
 
             icoCarrinho.Text = Font_Index.shopping_cart;
-            
+
+            usuarioLogado = Barrel.Current.Get<Pessoa>("pessoa");                     
+            CarrinhoView.itens.CollectionChanged += ColecaoAlterada;
+
         }
 
         protected override async void OnAppearing()
@@ -51,7 +55,7 @@ namespace ChamaGas.View
 
             IEnumerable<Pessoa> pessoas = await pessoa_Service.ListarRegistroAsync();
             IEnumerable<Produto> produtos = await produto_Service.ListarRegistroAsync();
-            if (eh_distribuidor) { 
+            if (eh_distribuidor) {
                 pessoas = pessoas.Where(p => p.Id == usuarioLogado.Id).ToList();
                 produtos = produtos.Where(p => p.FornecedorId == usuarioLogado.Id).ToList();
             }
@@ -111,11 +115,11 @@ namespace ChamaGas.View
         private void AdicionaBotaoNovoProduto()
         {
             if (this.ToolbarItems.Count == 0)
-            this.ToolbarItems.Add(new ToolbarItem
-            {
-                Text = "Add",
-                Command = new Command(AbrirTelaCadatroProduto),
-            });
+                this.ToolbarItems.Add(new ToolbarItem
+                {
+                    Text = "Add",
+                    Command = new Command(AbrirTelaCadatroProduto),
+                });
         }
 
         private void AdicionarBarraCarrinho()
@@ -130,7 +134,11 @@ namespace ChamaGas.View
 
         private void GesCarrinho_Tapped(object sender, EventArgs e)
         {
-            this.Navigation.PushModalAsync(new CarrinhoView());
+            if (CarrinhoView.itens.Count() > 0)
+                Navigation.PushAsync(new CarrinhoView());
+            else
+                DisplayAlert("Alerta", "Adicione itens ao carrinho", "Fechar");
+
         }
 
         private async void BtnRemover_Clicked(object sender, EventArgs e)
@@ -234,13 +242,40 @@ namespace ChamaGas.View
             ListarProdutosAsync(sbBusca.Text);
         }
 
-        private void LvProdutos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+
+        private void LvProdutos_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             //Pega o item selecionado "e" na lista
-            Produto produto = e.SelectedItem as Produto;
+            //Produto produto = e.Item as Produto;
+            var prd = (Produto)e.Item;
 
-            //vai para PessoaView enviando dados do usuario selecionado
-            MasterView.NavegacaoMasterDetail.Detail.Navigation.PushAsync(new ProdutoView(produto));
+            eh_distribuidor = usuarioLogado.Tipo == "Distribuidor";
+
+            if (eh_distribuidor)
+            {
+                //vai para PessoaView enviando dados do usuario selecionado
+                MasterView.NavegacaoMasterDetail.Detail.Navigation.PushAsync(new ProdutoView(prd));
+            }
+            else
+            {
+
+                int proximoId = CarrinhoView.itens.Count() + 1;
+
+                CarrinhoView.itens.Add(new PedidoItens("", prd.Id, proximoId.ToString(), 1, prd.Preco)
+                { DescricaoProduto = prd.Descricao});
+
+
+            }
         }
+
+            private void ColecaoAlterada(object sender, NotifyCollectionChangedEventArgs e)
+            {
+                CarrinhoView.pedido.TotalPedido = CarrinhoView.itens.Sum(p => p.ValorTotal);
+                CarrinhoView.pedido.TotalItens = CarrinhoView.itens.Count();
+   
+            }
+        
     }
-}
+
+}  
+   

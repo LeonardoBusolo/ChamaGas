@@ -1,12 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChamaGas.View.CarrinhoView">
+             xmlns:c="clr-namespace:ChamaGas.Components"
+             x:Class="ChamaGas.View.CarrinhoView"
+             BackgroundColor="WhiteSmoke">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome Carrinho!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <Label Text="{Binding ValorTotal, StringFormat='{0:C2}'}" FontSize="16" TextColor="OrangeRed"/>
+            </StackLayout>
+            <ListView x:Name="lvItens" ItemsSource=""
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal"
+                                         Margin="15,15,15,0"
+                                  Padding="10,10,10,10"
+                                  BackgroundColor="White">
+                                <Label Text="{Binding DescricaoProduto}" />
+                                <c:Icon Text="{Binding IcoMenos}" FontSize="16" TextColor="OrangeRed">
+                                    <c:Icon.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding MenosCommand}" />
+                                    </c:Icon.GestureRecognizers>
+                                </c:Icon>
+                                <Label Text="{Binding Quantidade}" />
+                                <c:Icon Text="{Binding IcoMais}" FontSize="16" TextColor="OrangeRed">
+                                    <c:Icon.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding MaisCommand}" />
+                                    </c:Icon.GestureRecognizers>
+                                </c:Icon>
+                                <Label Text="{Binding ValorTotal, StringFormat='{0:C2}'}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
