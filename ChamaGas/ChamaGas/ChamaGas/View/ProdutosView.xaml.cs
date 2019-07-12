@@ -39,6 +39,7 @@ namespace ChamaGas.View
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+
             // TODO : ERRO
             eh_distribuidor = usuarioLogado.Tipo == "Distribuidor";
 
@@ -55,12 +56,20 @@ namespace ChamaGas.View
 
             IEnumerable<Pessoa> pessoas = await pessoa_Service.ListarRegistroAsync();
             IEnumerable<Produto> produtos = await produto_Service.ListarRegistroAsync();
-            if (eh_distribuidor) {
+            if (eh_distribuidor)
+            {
                 pessoas = pessoas.Where(p => p.Id == usuarioLogado.Id).ToList();
                 produtos = produtos.Where(p => p.FornecedorId == usuarioLogado.Id).ToList();
             }
             else
+            {
                 pessoas.Where(p => p.Tipo == "Distribuidor").ToList();
+                if (CarrinhoView.itens.Count() > 0)
+                {
+                    await DisplayAlert("Alerta", "Não deveria atualizar", "Fechar");
+                }
+                
+            }
 
             var request = new GeolocationRequest(GeolocationAccuracy.Best);
             var mPosition = await Geolocation.GetLocationAsync(request);
@@ -172,7 +181,7 @@ namespace ChamaGas.View
             ListarProdutosAsync(sbBusca.Text);
         }
 
-        private async void ListarProdutosAsync(string busca = null)
+        private async void ListarProdutosAsync(string busca = null, string forne = null)
         {
 
             lvProdutos.IsRefreshing = true;
@@ -189,7 +198,14 @@ namespace ChamaGas.View
                     produtos = produtos.Where(p => p.FornecedorId == usuarioLogado.Id).ToList();
                 }
                 else
+                {
                     pessoas.Where(p => p.Tipo == "Distribuidor").ToList();
+                    if (!string.IsNullOrEmpty(forne))
+                    {
+                        produtos = produtos.Where(p => p.FornecedorId == forne).ToList();
+                    }
+                    
+                }
 
                 var request = new GeolocationRequest(GeolocationAccuracy.Best);
                 var mPosition = await Geolocation.GetLocationAsync(request);
@@ -258,12 +274,13 @@ namespace ChamaGas.View
             }
             else
             {
-
+               
                 int proximoId = CarrinhoView.itens.Count() + 1;
 
                 CarrinhoView.itens.Add(new PedidoItens("", prd.Id, proximoId.ToString(), 1, prd.Preco)
                 { DescricaoProduto = prd.Descricao});
 
+                ListarProdutosAsync("",prd.FornecedorId);
 
             }
         }
