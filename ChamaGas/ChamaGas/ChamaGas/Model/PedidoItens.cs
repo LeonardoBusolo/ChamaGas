@@ -76,8 +76,13 @@ namespace ChamaGas.Model
 
         private void Menos()
         {
-            Quantidade -= 1;
-            ValorTotal = Quantidade * Preco;
+            if (Quantidade > 0)
+            {
+                Quantidade -= 1;
+                ValorTotal = Quantidade * Preco;
+            }
+                
+
         }
 
         private void Mais()

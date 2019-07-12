@@ -1,4 +1,5 @@
-﻿using ChamaGas.Model;
+﻿using ChamaGas.Helpers;
+using ChamaGas.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +23,11 @@ namespace ChamaGas.View
 			InitializeComponent ();
             this.BindingContext = CarrinhoView.pedido;
 
+            icoCarrinho.Text = Font_Index.shopping_cart;
+            icoListaItens.Text = Font_Index.box;
+            icoDadosEntrega.Text = Font_Index.calendar_alt;
             lvItens.ItemsSource = CarrinhoView.itens;
         }
-	}
+
+    }
 }

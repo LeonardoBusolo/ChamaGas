@@ -6,8 +6,18 @@
              BackgroundColor="WhiteSmoke">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
-                <Label Text="{Binding ValorTotal, StringFormat='{0:C2}'}" FontSize="16" TextColor="OrangeRed"/>
+            <StackLayout Orientation="Horizontal"
+                         BackgroundColor="Orange"
+                         Margin="15,15,15,0"
+                         Padding="10,10,10,10"
+                         Opacity="0.5"
+                         VerticalOptions="Start">
+                <c:Icon x:Name="icoListaItens" 
+                        FontSize="16" 
+                        TextColor="White" 
+                        HorizontalOptions ="Start"/>
+                <Label Text="Itens do Pedido" FontSize="16" TextColor="White"  
+                       HorizontalOptions ="CenterAndExpand"/>
             </StackLayout>
             <ListView x:Name="lvItens" ItemsSource=""
                       HasUnevenRows="True"
@@ -16,27 +26,92 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal"
-                                         Margin="15,15,15,0"
-                                  Padding="10,10,10,10"
-                                  BackgroundColor="White">
-                                <Label Text="{Binding DescricaoProduto}" />
-                                <c:Icon Text="{Binding IcoMenos}" FontSize="16" TextColor="OrangeRed">
+                                         Margin="15,1,15,0"
+                                            Padding="10,10,10,10"
+                                            BackgroundColor="White"
+                                         VerticalOptions="Start">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                </Grid>
+                                <Label Grid.Row="0" Grid.Column="0" 
+                                       Text="{Binding DescricaoProduto}"
+                                       HorizontalOptions="StartAndExpand"/>
+                                <c:Icon Grid.Row="0" Grid.Column="1"
+                                        Text="{Binding IcoMenos}" 
+                                         FontSize="16" 
+                                         TextColor="OrangeRed"
+                                        HorizontalOptions="Center">
                                     <c:Icon.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding MenosCommand}" />
+                                        <TapGestureRecognizer Command="{Binding MenosCommand}"  />
                                     </c:Icon.GestureRecognizers>
                                 </c:Icon>
-                                <Label Text="{Binding Quantidade}" />
-                                <c:Icon Text="{Binding IcoMais}" FontSize="16" TextColor="OrangeRed">
+                                <Label Grid.Row="0" Grid.Column="2"
+                                       Text="{Binding Quantidade}"
+                                       HorizontalOptions="Center"/>
+                                <c:Icon Grid.Row="0" Grid.Column="3"
+                                        Text="{Binding IcoMais}" 
+                                        FontSize="16" 
+                                        TextColor="OrangeRed"
+                                        HorizontalOptions="Center">
                                     <c:Icon.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding MaisCommand}" />
                                     </c:Icon.GestureRecognizers>
                                 </c:Icon>
-                                <Label Text="{Binding ValorTotal, StringFormat='{0:C2}'}" />
+                                <Label Grid.Row="0" Grid.Column="4"
+                                       Text="{Binding ValorTotal, StringFormat='{0:C2}'}"
+                                       HorizontalOptions="End"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <StackLayout Orientation="Horizontal"
+                         BackgroundColor="Orange"
+                         Margin="15,15,15,0"
+                         Padding="10,10,10,10"
+                         Opacity="0.5"
+                         VerticalOptions="Start">
+                <c:Icon x:Name="icoDadosEntrega" 
+                        FontSize="16" 
+                        TextColor="White" 
+                        HorizontalOptions ="Start"/>
+                <Label Text="Dados da Entrega" FontSize="16" TextColor="White"  
+                       HorizontalOptions ="CenterAndExpand"/>
+                
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                                         Margin="15,1,15,0"
+                                            Padding="10,10,10,10"
+                                            BackgroundColor="White"
+                                         VerticalOptions="Start">
+                <Label Text="Agenda de Entrega:" HorizontalOptions="CenterAndExpand"/>
+                <DatePicker  />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         BackgroundColor="OrangeRed"
+                         Margin="15,15,15,0"
+                         Padding="10,10,10,10"
+                         VerticalOptions="Start">
+                <c:Icon x:Name="icoCarrinho" 
+                        FontSize="16" 
+                        TextColor="White" 
+                        HorizontalOptions ="Start"/>
+                <Label Text="Total do Pedido" FontSize="16" TextColor="White"  
+                       HorizontalOptions ="StartAndExpand"/>
+                <Label Text="{Binding TotalPedido, StringFormat='{0:C2}'}" 
+                       FontSize="16" 
+                       TextColor="WhiteSmoke"
+                       HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
