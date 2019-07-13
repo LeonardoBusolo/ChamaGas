@@ -27,19 +27,24 @@ namespace ChamaGas.View
         public ProdutosView()
         {
             InitializeComponent();
-            this.BindingContext = CarrinhoView.pedido;
+            PopuleBindings();
 
             icoCarrinho.Text = Font_Index.shopping_cart;
-
             usuarioLogado = Barrel.Current.Get<Pessoa>("pessoa");                     
-            CarrinhoView.itens.CollectionChanged += ColecaoAlterada;
+        }
 
+        private void PopuleBindings()
+        {
+            CarrinhoView.pedido.DelegateAtualizadorLista += ColecaoAlterada;
+            this.BindingContext = CarrinhoView.pedido;
+            CarrinhoView.itens.CollectionChanged += ColecaoAlterada;
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
+            if (string.IsNullOrEmpty(CarrinhoView.pedido.FornecedorId))
+                PopuleBindings();
             // TODO : ERRO
             eh_distribuidor = usuarioLogado.Tipo == "Distribuidor";
 
@@ -66,7 +71,8 @@ namespace ChamaGas.View
                 pessoas.Where(p => p.Tipo == "Distribuidor").ToList();
                 if (CarrinhoView.itens.Count() > 0)
                 {
-                    await DisplayAlert("Alerta", "Não deveria atualizar", "Fechar");
+                    var primeiroItem = CarrinhoView.pedido.FornecedorId;
+                    produtos = produtos.Where(p => p.FornecedorId == primeiroItem).ToList();
                 }
                 
             }
@@ -278,20 +284,28 @@ namespace ChamaGas.View
                 int proximoId = CarrinhoView.itens.Count() + 1;
 
                 CarrinhoView.itens.Add(new PedidoItens("", prd.Id, proximoId.ToString(), 1, prd.Preco)
-                { DescricaoProduto = prd.Descricao});
+                { DescricaoProduto = prd.Descricao,
+                    PedidoPai = CarrinhoView.pedido});
 
-                ListarProdutosAsync("",prd.FornecedorId);
+                CarrinhoView.pedido.FornecedorId = prd.FornecedorId;
+
+                if (CarrinhoView.itens.Count() == 1 || !string.IsNullOrEmpty(sbBusca.Text))
+                    ListarProdutosAsync("",prd.FornecedorId);
 
             }
         }
 
-            private void ColecaoAlterada(object sender, NotifyCollectionChangedEventArgs e)
+            private void ColecaoAlterada(object sender, EventArgs e)
             {
                 CarrinhoView.pedido.TotalPedido = CarrinhoView.itens.Sum(p => p.ValorTotal);
                 CarrinhoView.pedido.TotalItens = CarrinhoView.itens.Count();
    
             }
-        
+
+        private void LvProdutos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            lvProdutos.SelectedItem = null;
+        }
     }
 
 }  

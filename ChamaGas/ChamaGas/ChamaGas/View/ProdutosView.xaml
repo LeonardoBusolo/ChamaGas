@@ -19,7 +19,8 @@
                       HasUnevenRows="True"
                       SeparatorVisibility="None"
                       Refreshing="LvProdutos_Refreshing"
-                      ItemTapped="LvProdutos_ItemTapped" >
+                      ItemTapped="LvProdutos_ItemTapped"
+                              ItemSelected="LvProdutos_ItemSelected">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>

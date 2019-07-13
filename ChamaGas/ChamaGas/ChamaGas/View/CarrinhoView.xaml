@@ -93,14 +93,17 @@
                                             Padding="10,10,10,10"
                                             BackgroundColor="White"
                                          VerticalOptions="Start">
-                <Label Text="Agenda de Entrega:" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Agenda de Entrega:" 
+                       HorizontalOptions="CenterAndExpand"/>
                 <DatePicker  />
+                <TimePicker />
             </StackLayout>
             <StackLayout Orientation="Horizontal"
                          BackgroundColor="OrangeRed"
                          Margin="15,15,15,0"
                          Padding="10,10,10,10"
-                         VerticalOptions="Start">
+                         VerticalOptions="Start"
+                         Opacity="0.5">
                 <c:Icon x:Name="icoCarrinho" 
                         FontSize="16" 
                         TextColor="White" 
@@ -111,6 +114,16 @@
                        FontSize="16" 
                        TextColor="WhiteSmoke"
                        HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal"
+                         BackgroundColor="OrangeRed"
+                         Margin="25,15,25,15"
+                         Padding="10,10,10,10"
+                         VerticalOptions="Start"
+                         >
+                <Button x:Name="btnSalvarPedido" Text="Salvar"  Clicked="BtnSalvarPedido_Clicked"/>
+
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

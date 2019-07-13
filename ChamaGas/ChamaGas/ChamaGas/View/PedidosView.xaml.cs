@@ -55,33 +55,33 @@ namespace ChamaGas.View
 
                 var itensFiltrados = pedidosItens.Where(i => i.PedidoId == pedido.Id).ToList();
                 var total = itensFiltrados.Sum(i => i.ValorTotal);
-                pedido.ValorTotal = "R$" + total.ToString("C2");
+                pedido.TotalPedido = total;// ("C2");
             }
 
-            //lvPedidos.ItemsSource = pedidos;
+            lvPedidos.ItemsSource = pedidos;
 
-            lvPedidos.ItemsSource = new List<Pedido>
-            {
-                new Pedido("10","5")
-                {
-                    DataAgenda = DateTime.Now,
-                    DataEmissao = DateTime.Now,
-                    DataEntrega = DateTime.Now,
-                    Id = "1",
-                    NomeFornecedor = "Jão do Gás",
-                    ValorTotal = "R$67.45"
-                },
+            //lvPedidos.ItemsSource = new List<Pedido>
+            //{
+            //    new Pedido("10","5")
+            //    {
+            //        DataAgenda = DateTime.Now,
+            //        DataEmissao = DateTime.Now,
+            //        DataEntrega = DateTime.Now,
+            //        Id = "1",
+            //        NomeFornecedor = "Jão do Gás",
+            //        ValorTotal = "R$67.45"
+            //    },
 
-                new Pedido("10","5")
-                {
-                    DataAgenda = DateTime.Now,
-                    DataEmissao = DateTime.Now,
-                    DataEntrega = DateTime.Now,
-                    Id = "12",
-                    NomeFornecedor = "Zé do Gás",
-                    ValorTotal = "R$99.45"
-                }
-            };
+            //    new Pedido("10","5")
+            //    {
+            //        DataAgenda = DateTime.Now,
+            //        DataEmissao = DateTime.Now,
+            //        DataEntrega = DateTime.Now,
+            //        Id = "12",
+            //        NomeFornecedor = "Zé do Gás",
+            //        ValorTotal = "R$99.45"
+            //    }
+            //};
 
         }
     }

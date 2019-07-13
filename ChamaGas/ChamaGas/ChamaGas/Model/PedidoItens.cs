@@ -46,6 +46,9 @@ namespace ChamaGas.Model
         [JsonIgnore]
         public string IcoMais { get; set; }
 
+        [JsonIgnore]
+        public Pedido PedidoPai { get; set; }
+
 
         [JsonIgnore]
         public string DescricaoProduto { get; set; }
@@ -80,6 +83,8 @@ namespace ChamaGas.Model
             {
                 Quantidade -= 1;
                 ValorTotal = Quantidade * Preco;
+
+                PedidoPai.AtualizaLista();
             }
                 
 
@@ -89,6 +94,8 @@ namespace ChamaGas.Model
         {
             Quantidade += 1;
             ValorTotal = Quantidade * Preco;
+
+            PedidoPai.AtualizaLista();
         }
     }
 }

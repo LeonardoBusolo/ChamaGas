@@ -21,8 +21,8 @@ namespace ChamaGas.Model
 
         public DateTime DataEntrega { get; set; }
 
-        [JsonIgnore]
-        public string ValorTotal { get; set; }
+        //[JsonIgnore]
+        //public string ValorTotal { get; set; }
 
         [JsonIgnore]
         public string NomeFornecedor { get; set; }
@@ -57,5 +57,11 @@ namespace ChamaGas.Model
             DataAgenda = DateTime.Now.AddHours(3);
         }
 
+        public event EventHandler DelegateAtualizadorLista;
+
+        public void AtualizaLista()
+        {
+            DelegateAtualizadorLista(this, new EventArgs());
+        }
     }
 }
