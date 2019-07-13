@@ -95,8 +95,9 @@
                                          VerticalOptions="Start">
                 <Label Text="Agenda de Entrega:" 
                        HorizontalOptions="CenterAndExpand"/>
-                <DatePicker  />
-                <TimePicker />
+                <DatePicker x:Name="dateDataAgendada"  />
+                <TimePicker x:Name="timeDataAgendada"/>
+                
             </StackLayout>
             <StackLayout Orientation="Horizontal"
                          BackgroundColor="OrangeRed"
@@ -118,11 +119,12 @@
 
             <StackLayout Orientation="Horizontal"
                          BackgroundColor="OrangeRed"
-                         Margin="25,15,25,15"
+                         Margin="45,15,45,15"
                          Padding="10,10,10,10"
                          VerticalOptions="Start"
                          >
-                <Button x:Name="btnSalvarPedido" Text="Salvar"  Clicked="BtnSalvarPedido_Clicked"/>
+                <Button x:Name="btnSalvarPedido" Text="Salvar"  Clicked="BtnSalvarPedido_Clicked" HorizontalOptions="Center"
+                        BackgroundColor="Orange" Opacity="0.5"/>
 
             </StackLayout>
         </StackLayout>

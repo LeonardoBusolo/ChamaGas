@@ -5,6 +5,7 @@ using MonkeyCache.SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +53,24 @@ namespace ChamaGas.View
             if (!confirmar)
                 return;
 
+            
+            string day = dateDataAgendada.Date.Day.ToString("00");
+            string month = dateDataAgendada.Date.Month.ToString("00");
+            string year = dateDataAgendada.Date.Year.ToString("0000");
+            string sourceDateText = year.ToString() + "-" + month.ToString() + "-" + day.ToString();
+
+            string hours = timeDataAgendada.Time.Hours.ToString("00");
+            string minutes = timeDataAgendada.Time.Minutes.ToString("00");
+            string seconds = timeDataAgendada.Time.Seconds.ToString("00");
+            string mil = timeDataAgendada.Time.Milliseconds.ToString("000");
+            TimeSpan sourceTime = timeDataAgendada.Time;
+            var dt = Convert.ToDateTime(sourceTime.ToString());
+            var time = dt.ToString("HH:mm:ss");
+            var sourceDate = sourceDateText + " " + time;
+
+            DateTime pedidoDataAgenda = DateTime.ParseExact(sourceDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+
+            CarrinhoView.pedido.DataAgenda = pedidoDataAgenda;
             if (!await Pedido_Service.IncluirRegistroAsync(CarrinhoView.pedido))
                 return;
 

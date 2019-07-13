@@ -54,7 +54,7 @@ namespace ChamaGas.Model
             ClienteId = clienteId;
             FornecedorId = fornecedorId;
             DataEmissao = DateTime.Now;
-            DataAgenda = DateTime.Now.AddHours(3);
+            
         }
 
         public event EventHandler DelegateAtualizadorLista;
