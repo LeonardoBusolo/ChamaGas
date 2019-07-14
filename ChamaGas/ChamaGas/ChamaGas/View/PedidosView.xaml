@@ -22,30 +22,94 @@
                                   Padding="10,10,10,10"
                                   BackgroundColor="White">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="95"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"/>
                                     <RowDefinition Height="auto"/>
                                     <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
                                 </Grid.RowDefinitions>
                                 <Label Grid.Column="0" Grid.Row="0" 
-                                       TextColor="OrangeRed" 
-                                       FontAttributes="Bold" 
-                                       FontSize="Large"
-                                    Text="{Binding Id}" />
+                                       TextColor="Gray" 
+                                       FontAttributes="Italic" 
+                                       FontSize="12"
+                                    Text="Id:" />
                                 <Label Grid.Column="1" Grid.Row="0" 
-                                    Text="{Binding ValorTotal}" />
-                                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                                       TextColor="Orange" 
+                                       FontAttributes="Italic" 
+                                       FontSize="Micro"
+                                    Text="{Binding Id}" />
+                                
+                                <Label Grid.Column="2" Grid.Row="0" 
+                                       TextColor="Gray" 
+                                       FontAttributes="Italic" 
+                                       FontSize="12"
+                                       HorizontalTextAlignment="End"
+                                    Text="Emissão:" />
+                                <Label Grid.Column="3" Grid.Row="0" 
+                                    Text="{Binding DataEmissao, StringFormat='{0:dd/MM/yyyy}'}" 
+                                       TextColor="Orange" 
+                                       FontSize="12"/>
+
+                                <Label Text="Razão"
+                                       Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                                       TextColor="Gray"
+                                       FontAttributes="Italic"
+                                       FontSize="12" />
+                                <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"
                                        TextColor="OrangeRed" 
                                        FontAttributes="Bold" 
-                                       FontSize="Medium"
+                                       FontSize="16"
                                        Text="{Binding NomeFornecedor}" />
-                                <Label Grid.Column="0" Grid.Row="2" 
-                                    Text="{Binding DataEmissao, StringFormat='{0:dd/MM/yyyy}'}" />
-                                <Label Grid.Column="1" Grid.Row="2" 
-                                    Text="{Binding DataEntrega, StringFormat='{0:dd/MM/yyyy}'}" />
+
+                                <Label Grid.Column="0" Grid.Row="3" 
+                                       TextColor="Gray" 
+                                       FontSize="12"
+                                       FontAttributes="Italic"
+                                       Text="Itens:" />
+                                <Label Grid.Column="1" Grid.Row="3"
+                                       TextColor="Orange" 
+                                       FontSize="12"
+                                       Text="{Binding TotalItens}" />
+
+                                <Label Grid.Column="2" Grid.Row="3" 
+                                       TextColor="Gray" 
+                                       FontSize="12"
+                                       FontAttributes="Italic"
+                                       HorizontalTextAlignment="End"
+                                       Text="Total Pedido:" />
+                                <Label Grid.Column="3" Grid.Row="3"
+                                       TextColor="OrangeRed" 
+                                       FontAttributes="Bold" 
+                                       FontSize="16"
+                                       Text="{Binding TotalPedido, StringFormat='{0:C2}'}" />
+
+                                <Label Grid.Column="0" Grid.Row="4" 
+                                       TextColor="Gray" 
+                                       FontSize="12"
+                                       FontAttributes="Italic"
+                                       Text="Data Agenda:" />
+                                <Label Grid.Column="1" Grid.Row="4" 
+                                    Text="{Binding DataAgenda, StringFormat='{0:dd/MM/yyyy}'}"
+                                       TextColor="OrangeRed"
+                                       FontAttributes="Bold"
+                                       FontSize="12"/>
+                                <Label Grid.Column="2" Grid.Row="4" 
+                                       TextColor="Gray" 
+                                       FontSize="12"
+                                       FontAttributes="Italic"
+                                       HorizontalTextAlignment="End"
+                                       Text="Data Entrega:" />
+                                <Label x:Name="lblDataEntrega" 
+                                    Grid.Column="3" Grid.Row="4" 
+                                       IsVisible="True"
+                                    Text="{Binding DataEntrega, StringFormat='{0:dd/MM/yyyy}'}" 
+                                       TextColor="Orange" 
+                                       FontSize="12"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

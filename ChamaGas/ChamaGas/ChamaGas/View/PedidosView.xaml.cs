@@ -23,7 +23,8 @@ namespace ChamaGas.View
 		public PedidosView ()
 		{
 			InitializeComponent ();
-            usuarioLogado = Barrel.Current.Get<Pessoa>("pessoa");
+            usuarioLogado = Barrel.Current.Get<Pessoa>("pessoa");           
+
 		}
 
         protected override async void OnAppearing()
@@ -31,7 +32,7 @@ namespace ChamaGas.View
             base.OnAppearing();
 
             bool eh_distribuidor = usuarioLogado.Tipo == "Distrubuidor";
-
+            
             IEnumerable<Pedido> pedidos = await pedido_Service.ListarRegistroAsync();
             IEnumerable<PedidoItens> pedidosItens = await pedidoItens_Service.ListarRegistroAsync();
             IEnumerable<Pessoa> pessoas = await pessoa_Service.ListarRegistroAsync();
@@ -56,7 +57,10 @@ namespace ChamaGas.View
                 var itensFiltrados = pedidosItens.Where(i => i.PedidoId == pedido.Id).ToList();
                 var total = itensFiltrados.Sum(i => i.ValorTotal);
                 pedido.TotalPedido = total;// ("C2");
+
             }
+
+
 
             lvPedidos.ItemsSource = pedidos;
 
