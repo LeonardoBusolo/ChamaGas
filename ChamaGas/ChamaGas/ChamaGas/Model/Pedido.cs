@@ -21,6 +21,23 @@ namespace ChamaGas.Model
 
         public DateTime DataEntrega { get; set; }
 
+        [JsonIgnore]
+        public string Entrega
+        {
+            get
+            {
+                if (DataEntrega == DateTime.MinValue)
+                    return string.Empty;
+
+                return DataEntrega.ToString();
+            }
+            set
+            {
+                DataEntrega = DateTime.Parse(value, System.Globalization.CultureInfo.InvariantCulture);
+            }
+        }
+
+
         //[JsonIgnore]
         //public string ValorTotal { get; set; }
 
@@ -54,7 +71,8 @@ namespace ChamaGas.Model
             ClienteId = clienteId;
             FornecedorId = fornecedorId;
             DataEmissao = DateTime.Now;
-            
+            DataEntrega = DateTime.MinValue;
+            //DataEntrega = DateTime.Now.AddHours(3);
         }
 
         public event EventHandler DelegateAtualizadorLista;

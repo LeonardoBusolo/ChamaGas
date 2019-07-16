@@ -26,7 +26,7 @@ namespace ChamaGas.View
 
         Pessoa usuario;
 
-        public CarrinhoView()
+        public CarrinhoView(Pedido listapedido = null)
         {
             InitializeComponent();
 
@@ -40,6 +40,36 @@ namespace ChamaGas.View
             icoDadosEntrega.Text = Font_Index.calendar_alt;
             lvItens.ItemsSource = CarrinhoView.itens;
 
+            if (!string.IsNullOrWhiteSpace(listapedido.Id))
+            {
+                ListarPedido(listapedido.Id);
+                lvItens.IsEnabled = false;
+                btnSalvarPedido.Text = "Entregar Pedido";
+
+            }
+            
+        }
+
+        private async void ListarPedido(string listapedido)
+        {
+            ProdutoAzureService produto_Service = new ProdutoAzureService();
+
+            IEnumerable<Pedido> pedido = await Pedido_Service.ListarRegistroAsync();
+            IEnumerable<PedidoItens> pedidosItens = await PedidoItens_Service.ListarRegistroAsync();
+            IEnumerable<Produto> produtos = await produto_Service.ListarRegistroAsync();
+
+            pedido = pedido.Where(p => p.Id == listapedido);
+            pedidosItens = pedidosItens.Where(p => p.PedidoId == listapedido);
+            
+            foreach (var pedidoItens in pedidosItens)
+            {
+                produtos = produtos.Where(p => p.Id == pedidoItens.Id);
+
+            }
+
+            lvItens.ItemsSource = pedido;
+            lvItens.ItemsSource = produtos;
+            lvItens.ItemsSource = pedidosItens;
         }
 
         private async void BtnSalvarPedido_Clicked(object sender, EventArgs e)

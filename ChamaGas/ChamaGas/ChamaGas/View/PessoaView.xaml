@@ -43,7 +43,7 @@
                         <ViewCell>
                             <Entry x:Name="etCep" 
                                    Placeholder="cep" 
-                                   Unfocused="EtCep_Unfocused"
+                                   TextChanged="EtCep_TextChanged"
                                    Text="{Binding Cep}"/>
                         </ViewCell>
                         <EntryCell x:Name="etLogradouro" 

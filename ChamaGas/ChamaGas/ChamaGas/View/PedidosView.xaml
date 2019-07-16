@@ -14,7 +14,8 @@
                    TextColor="OrangeRed"/>
             <ListView x:Name="lvPedidos"
                       HasUnevenRows="True"
-                      SeparatorVisibility="None">
+                      SeparatorVisibility="None"
+                      ItemTapped="LvPedidos_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -51,7 +52,7 @@
                                        HorizontalTextAlignment="End"
                                     Text="Emissão:" />
                                 <Label Grid.Column="3" Grid.Row="0" 
-                                    Text="{Binding DataEmissao, StringFormat='{0:dd/MM/yyyy}'}" 
+                                    Text="{Binding DataEmissao, StringFormat='{0:dd/MM/yyyy HH:mm}'}" 
                                        TextColor="Orange" 
                                        FontSize="12"/>
 
@@ -94,7 +95,7 @@
                                        FontAttributes="Italic"
                                        Text="Data Agenda:" />
                                 <Label Grid.Column="1" Grid.Row="4" 
-                                    Text="{Binding DataAgenda, StringFormat='{0:dd/MM/yyyy}'}"
+                                    Text="{Binding DataAgenda, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
                                        TextColor="OrangeRed"
                                        FontAttributes="Bold"
                                        FontSize="12"/>
@@ -107,7 +108,7 @@
                                 <Label x:Name="lblDataEntrega" 
                                     Grid.Column="3" Grid.Row="4" 
                                        IsVisible="True"
-                                    Text="{Binding DataEntrega, StringFormat='{0:dd/MM/yyyy}'}" 
+                                    Text="{Binding Entrega}" 
                                        TextColor="Orange" 
                                        FontSize="12"/>
                             </Grid>

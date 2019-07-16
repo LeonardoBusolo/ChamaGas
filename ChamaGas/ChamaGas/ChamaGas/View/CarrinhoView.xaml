@@ -51,7 +51,7 @@
                                          TextColor="OrangeRed"
                                         HorizontalOptions="Center">
                                     <c:Icon.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding MenosCommand}"  />
+                                        <TapGestureRecognizer Command="{Binding MenosCommand}" />
                                     </c:Icon.GestureRecognizers>
                                 </c:Icon>
                                 <Label Grid.Row="0" Grid.Column="2"

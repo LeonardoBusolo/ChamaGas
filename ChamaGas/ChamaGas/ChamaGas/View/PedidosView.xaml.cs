@@ -12,27 +12,28 @@ using Xamarin.Forms.Xaml;
 
 namespace ChamaGas.View
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PedidosView : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PedidosView : ContentPage
+    {
         PedidoAzureService pedido_Service = new PedidoAzureService();
         PedidoItensAzureService pedidoItens_Service = new PedidoItensAzureService();
         PessoaAzureService pessoa_Service = new PessoaAzureService();
         Pessoa usuarioLogado;
+        bool eh_distribuidor;
 
-		public PedidosView ()
-		{
-			InitializeComponent ();
-            usuarioLogado = Barrel.Current.Get<Pessoa>("pessoa");           
+        public PedidosView()
+        {
+            InitializeComponent();
+            usuarioLogado = Barrel.Current.Get<Pessoa>("pessoa");
 
-		}
+        }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
 
             bool eh_distribuidor = usuarioLogado.Tipo == "Distrubuidor";
-            
+
             IEnumerable<Pedido> pedidos = await pedido_Service.ListarRegistroAsync();
             IEnumerable<PedidoItens> pedidosItens = await pedidoItens_Service.ListarRegistroAsync();
             IEnumerable<Pessoa> pessoas = await pessoa_Service.ListarRegistroAsync();
@@ -86,6 +87,15 @@ namespace ChamaGas.View
             //        ValorTotal = "R$99.45"
             //    }
             //};
+
+        }
+
+        private void LvPedidos_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+
+            var ped = (Pedido)e.Item;      
+     
+            Navigation.PushModalAsync(new CarrinhoView(ped));
 
         }
     }
