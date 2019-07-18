@@ -40,13 +40,7 @@ namespace ChamaGas.View
             icoDadosEntrega.Text = Font_Index.calendar_alt;
             lvItens.ItemsSource = CarrinhoView.itens;
 
-            if (!string.IsNullOrWhiteSpace(listapedido.Id))
-            {
-                ListarPedido(listapedido.Id);
-                lvItens.IsEnabled = false;
-                btnSalvarPedido.Text = "Entregar Pedido";
-
-            }
+     
             
         }
 
@@ -67,8 +61,7 @@ namespace ChamaGas.View
 
             }
 
-            lvItens.ItemsSource = pedido;
-            lvItens.ItemsSource = produtos;
+
             lvItens.ItemsSource = pedidosItens;
         }
 
@@ -89,10 +82,11 @@ namespace ChamaGas.View
             string year = dateDataAgendada.Date.Year.ToString("0000");
             string sourceDateText = year.ToString() + "-" + month.ToString() + "-" + day.ToString();
 
-            string hours = timeDataAgendada.Time.Hours.ToString("00");
-            string minutes = timeDataAgendada.Time.Minutes.ToString("00");
-            string seconds = timeDataAgendada.Time.Seconds.ToString("00");
-            string mil = timeDataAgendada.Time.Milliseconds.ToString("000");
+            //string hours = timeDataAgendada.Time.Hours.ToString("00");
+            //string minutes = timeDataAgendada.Time.Minutes.ToString("00");
+            //string seconds = timeDataAgendada.Time.Seconds.ToString("00");
+            //string mil = timeDataAgendada.Time.Milliseconds.ToString("000");
+
             TimeSpan sourceTime = timeDataAgendada.Time;
             var dt = Convert.ToDateTime(sourceTime.ToString());
             var time = dt.ToString("HH:mm:ss");

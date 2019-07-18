@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChamaGas.View.ConsultaPedidoView"
+             BackgroundColor="WhiteSmoke">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" x:Name="lbltextId" Text="Pedido:"/>
+                <Label Grid.Column="1" Grid.Row="0" x:Name="lblId"/>
+
+                <Label Grid.Column="0" Grid.Row="1" x:Name="lbltextEmissao" Text="Data Emissão:"/>
+                <Label Grid.Column="1" Grid.Row="1" x:Name="lblEmissao"/>
+
+                <Label Grid.Column="0" Grid.Row="2" x:Name="lbltextForne" Text="Fornecedor:"/>
+                <Label Grid.Column="1" Grid.Row="2" x:Name="lblForne"/>
+
+                <Label Grid.Column="0" Grid.Row="3" x:Name="lbltextCliente" Text="Cliente:"/>
+                <Label Grid.Column="1" Grid.Row="3" x:Name="lblCliente"/>
+
+            </Grid>
+            <ListView x:Name="lvItens"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding DescricaoProduto}" HorizontalOptions="StartAndExpand" />
+                                <Label Text="{Binding Quantidade}" HorizontalOptions="End"/>
+                                <Label Text="{Binding ValorTotal, StringFormat='{0:C2}'}}" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" x:Name="lblTotal" Text="Total:"/>
+                <Label Grid.Column="1" Grid.Row="0" x:Name="lblValorTotal"/>
+
+                <Label Grid.Column="0" Grid.Row="1" x:Name="lblAgenda" Text="Data Agendada:"/>
+                <Label Grid.Column="1" Grid.Row="1" x:Name="lblDataAgenda"/>
+
+                <Label Grid.Column="0" Grid.Row="2" x:Name="lblEntrega" Text="Data Entrega:"/>
+                <Label Grid.Column="1" Grid.Row="2" x:Name="lblDataEntrega"/>
+                <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" x:Name="btnEntregar"
+                        Text="Entregar" IsVisible="False" Clicked="BtnEntregar_Clicked"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

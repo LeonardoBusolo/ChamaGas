@@ -41,10 +41,15 @@ namespace ChamaGas.Model
         //[JsonIgnore]
         //public string ValorTotal { get; set; }
 
-        [JsonIgnore]
+        [JsonIgnore, SQLite.Ignore]
         public string NomeFornecedor { get; set; }
 
-        
+        [JsonIgnore, SQLite.Ignore]
+        public string NomeCliente { get; set; }
+
+        [JsonIgnore, SQLite.Ignore]
+        public List<PedidoItens> listaItens { get; set; }
+
         //declarando para barra de carrinho ficar atualizada janela produtos & carrinho
         public double totalPedido;
         [JsonIgnore]
