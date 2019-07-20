@@ -90,6 +90,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DependencyService\Share_IOS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -159,6 +160,9 @@
     </PackageReference>
     <PackageReference Include="PCLExt.FileStorage">
       <Version>1.4.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.Share">
+      <Version>4.0.2</Version>
     </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.5.231</Version>
