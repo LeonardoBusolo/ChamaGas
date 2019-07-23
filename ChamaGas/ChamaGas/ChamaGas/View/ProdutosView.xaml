@@ -50,7 +50,7 @@
                                        Source="{Binding FotoSource}"/>
                                         <Label Grid.Column="1" Grid.Row="0" Text="{Binding Descricao}"/>
                                         <Label Grid.Column="1" Grid.Row="1" Text="{Binding FornecedorNome}"/>
-                                        <Label Grid.Column="1" Grid.Row="2" Text="{Binding Preco}" HorizontalOptions="Start"/>
+                                        <Label Grid.Column="1" Grid.Row="2" Text="{Binding Preco, StringFormat='{0:C2}'}" HorizontalOptions="Start"/>
                                         <Label Grid.Column="1" Grid.Row="2" Text="{Binding Distancia}" HorizontalOptions="End"/>
                                     </Grid>
                                 </ViewCell>

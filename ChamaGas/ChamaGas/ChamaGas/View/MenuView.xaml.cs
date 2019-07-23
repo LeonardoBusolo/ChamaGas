@@ -105,6 +105,13 @@ namespace ChamaGas.View
                 PaginaView = typeof(PedidosView)
             });
 
+            paginas.Add(new Pagina
+            {
+                Titulo = "FlexLayout",
+                Icone = Font_Index.flipboard,
+                PaginaView = typeof(FlexPage)
+            });
+
             //paginas.Add(new Pagina
             //{
             //    Titulo = "Galeria",

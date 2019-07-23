@@ -9,8 +9,8 @@ namespace ChamaGas.Helpers
     {
         public static string Save(string content)
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string settingsPath = Path.Combine(path, "relat.html");
+            //string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string settingsPath = Path.Combine("/mnt/sdcard/download", "relat.html");
             StreamWriter stream = File.CreateText(settingsPath);
             stream.Write(content);
             stream.Close();
